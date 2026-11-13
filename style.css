@@ -1,0 +1,18 @@
+/*
+Theme Name: Quantia Hub
+Theme URI: https://quantiahub.com
+Author: MMG Bank
+Author URI: https://www.mmgbank.com
+Description: Tema WordPress para Quantia Hub, la aplicación financiera de MMG Bank Corporation. Portado desde el diseño React original.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: quantia-hub
+Tags: custom-logo, custom-menu, featured-images, translation-ready, accessibility-ready
+*/
+
+/* Los estilos del tema se compilan desde src/css/app.css a assets/dist/app.css
+   con Tailwind CLI. Este archivo es solo el header obligatorio de WordPress. */

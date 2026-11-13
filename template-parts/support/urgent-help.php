@@ -1,0 +1,67 @@
+<?php
+defined( 'ABSPATH' ) || exit;
+
+$phone    = quantia_option( 'contact_phone', '+507 208-7024' );
+$phone_url = quantia_option( 'contact_phone_url', 'tel:+5072087024' );
+$wa_base  = quantia_option( 'contact_whatsapp_url', 'https://wa.me/50764777460' );
+$wa_msg   = rawurlencode( 'Hola, necesito reportar mi tarjeta Quantia (pérdida, robo o un cargo que no reconozco).' );
+$wa_url   = $wa_base . '?text=' . $wa_msg;
+?>
+
+<section aria-labelledby="urgente-titulo" class="relative w-full overflow-hidden bg-ink py-16 text-white md:py-20">
+    <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-5 sm:px-6 lg:grid-cols-[1.4fr_1fr]">
+
+        <div>
+            <p class="inline-flex items-center gap-2 text-sm font-semibold text-qh-300">
+                <?php echo quantia_icon( 'lock', 'h-4 w-4' ); ?>
+                Ayuda urgente
+            </p>
+            <h2 id="urgente-titulo"
+                class="mt-4 font-display text-[clamp(1.75rem,1.1rem+2.6vw,3.5rem)] font-extrabold leading-[1.02] tracking-[-0.04em]">
+                ¿Perdiste tu tarjeta o ves un cargo
+                <span class="text-qh-300">que no reconoces?</span>
+            </h2>
+
+            <ol class="mt-8 space-y-4">
+                <li class="flex gap-4">
+                    <span class="font-display text-lg font-extrabold text-qh-300">1</span>
+                    <p class="text-base leading-relaxed text-white/75">
+                        <span class="font-semibold text-white">Bloquéala ahora desde la app:</span> entra a Tarjeta y toca Bloquear. Es inmediato.
+                    </p>
+                </li>
+                <li class="flex gap-4">
+                    <span class="font-display text-lg font-extrabold text-qh-300">2</span>
+                    <p class="text-base leading-relaxed text-white/75">
+                        <span class="font-semibold text-white">Repórtala con nosotros</span> para gestionar tu caso o una reposición.
+                    </p>
+                </li>
+            </ol>
+
+            <div class="mt-9 flex flex-wrap gap-3">
+                <a href="<?php echo esc_url( $phone_url ); ?>"
+                    class="inline-flex items-center gap-2 rounded-full bg-qh px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-qh-600">
+                    <?php echo quantia_icon( 'phone', 'h-4 w-4' ); ?>
+                    Llamar al <?php echo esc_html( $phone ); ?>
+                </a>
+                <a href="<?php echo esc_url( $wa_url ); ?>" target="_blank" rel="noopener noreferrer"
+                    data-quantia-whatsapp data-product="general" data-location="support"
+                    class="inline-flex items-center gap-2 rounded-full bg-white/10 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/20">
+                    <?php echo quantia_icon( 'message-circle', 'h-4 w-4' ); ?>
+                    Reportar por WhatsApp
+                </a>
+            </div>
+
+            <p class="mt-5 max-w-lg text-sm leading-relaxed text-white/55">
+                WhatsApp: todos los días, de 8:00 a.m. a 8:00 p.m. Avísanos cuanto antes: según los términos,
+                eres responsable de los consumos hechos con tu tarjeta hasta 2 horas después de tu reporte.
+            </p>
+        </div>
+
+        <div class="relative hidden justify-center lg:flex" data-parallax data-parallax-speed="0.3" data-parallax-rotate="-4">
+            <?php get_template_part( 'template-parts/components/phone-frame', null, array(
+                'label'  => 'Pantalla de tarjeta de la app con la opción de bloqueo',
+                'screen' => 'tarjeta',
+            ) ); ?>
+        </div>
+    </div>
+</section>

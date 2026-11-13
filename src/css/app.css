@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Ubuntu:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-tap-highlight-color: transparent;
+    }
+    body {
+        background-color: #ffffff;
+        color: #0b1f17;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    ::selection {
+        background-color: #00ac69;
+        color: #ffffff;
+    }
+}
+
+@layer components {
+    .qh-aurora {
+        background-color: #f4f8f6;
+    }
+
+    .qh-hero {
+        min-height: 100vh;
+    }
+    @supports (height: 100svh) {
+        .qh-hero {
+            min-height: 100svh;
+        }
+    }
+
+    .qh-page-hero {
+        min-height: 88vh;
+    }
+    @supports (height: 100svh) {
+        .qh-page-hero {
+            min-height: 88svh;
+        }
+    }
+
+    .qh-404-hero {
+        min-height: calc(100vh - 4rem);
+    }
+    @supports (height: 100svh) {
+        .qh-404-hero {
+            min-height: calc(100svh - 4rem);
+        }
+    }
+
+    .qh-404-giant {
+        font-size: min(40vw, 32vh, 16rem);
+    }
+}
+
+@media (min-width: 768px) {
+    .qh-aurora {
+        background-image: radial-gradient(circle at 20% 0%, rgba(0, 172, 105, 0.08), transparent 40%);
+    }
+}
+
+@media (min-width: 1024px) {
+    .qh-hero {
+        height: 100vh;
+        min-height: 640px;
+    }
+    @supports (height: 100dvh) {
+        .qh-hero {
+            height: 100dvh;
+        }
+    }
+
+    .qh-404-giant {
+        font-size: min(38vw, 55vh, 34rem);
+    }
+}
+
+@media (max-height: 700px) {
+    .qh-page-hero {
+        min-height: auto;
+        padding-bottom: 3rem !important;
+        padding-top: 6rem !important;
+    }
+}
+
+    /* ---------- FAQ tabs carousel ---------- */
+    .qh-faq-tabs-wrap {
+        position: relative;
+    }
+
+    .qh-faq-tabs {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        scroll-behavior: smooth;
+        scroll-snap-type: x proximity;
+    }
+    .qh-faq-tabs::-webkit-scrollbar {
+        display: none;
+    }
+    .qh-faq-tabs > button {
+        scroll-snap-align: start;
+    }
+
+    /* Fade en bordes */
+    .qh-faq-tabs-wrap::before,
+    .qh-faq-tabs-wrap::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 40px;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0;
+        transition: opacity 200ms ease;
+    }
+    .qh-faq-tabs-wrap::before {
+        left: 0;
+        background: linear-gradient(to right, #ffffff 35%, rgba(255, 255, 255, 0));
+    }
+    .qh-faq-tabs-wrap::after {
+        right: 0;
+        background: linear-gradient(to left, #ffffff 35%, rgba(255, 255, 255, 0));
+    }
+    .qh-faq-tabs-wrap[data-at-start="false"]::before,
+    .qh-faq-tabs-wrap[data-at-end="false"]::after {
+        opacity: 1;
+    }
+
+    /* Botones flecha */
+    .qh-faq-tabs-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 36px;
+        width: 36px;
+        border-radius: 9999px;
+        background-color: #0b1f17;
+        color: #ffffff;
+        box-shadow: 0 6px 18px -8px rgba(11, 31, 23, 0.5);
+        transition: background-color 150ms ease, opacity 150ms ease;
+    }
+    .qh-faq-tabs-nav:hover {
+        background-color: #046b44;
+    }
+    .qh-faq-tabs-nav[hidden] {
+        display: none;
+    }
+    .qh-faq-tabs-nav--prev {
+        left: 4px;
+    }
+    .qh-faq-tabs-nav--next {
+        right: 4px;
+    }
