@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-$inquiry_types = array( 'Cuenta corriente', 'Kuara y transferencias', 'Tarjeta Visa Débito', 'Inversiones', 'Retiro', 'Cuenta de planilla', 'Otro' );
+$inquiry_types = array( 'Cuenta corriente', 'Kuara y transferencias', 'Tarjeta Visa Débito', 'Inversiones', 'Jubilación', 'Cuenta de planilla', 'Otro' );
 $nonce         = wp_create_nonce( 'quantia_contact' );
 $ajax_url      = admin_url( 'admin-ajax.php' );
 ?>

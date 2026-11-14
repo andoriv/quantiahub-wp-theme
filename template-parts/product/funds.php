@@ -7,19 +7,19 @@ $plan = $args['plan'];
 if ( 'inversion' === $plan ) {
     $funds            = quantia_get_funds( 'inversion' );
     $label            = __( 'Fondos de inversión, MMG Bank', 'quantia-hub' );
-    $title_a          = __( 'Los fondos detrás', 'quantia-hub' );
+    $title_a          = __( 'Oferta de fondos', 'quantia-hub' );
     $title_b          = __( 'de tu portafolio.', 'quantia-hub' );
     $profiles_title_a = __( '¿Qué tipo de', 'quantia-hub' );
     $profiles_title_b = __( 'inversionista eres?', 'quantia-hub' );
     $intro            = __( 'Elige un perfil de riesgo y mira cómo se distribuye tu portafolio entre los fondos.', 'quantia-hub' );
 } else {
-    $funds            = quantia_get_funds( 'retiro' );
-    $label            = __( 'Fondos de los planes de retiro, Quantia AFP', 'quantia-hub' );
-    $title_a          = __( 'Los fondos detrás', 'quantia-hub' );
-    $title_b          = __( 'de tu retiro.', 'quantia-hub' );
+    $funds            = quantia_get_funds( 'jubilación' );
+    $label            = __( 'Fondos de los planes de jubilación, Quantia AFP', 'quantia-hub' );
+    $title_a          = __( 'Oferta de fondos', 'quantia-hub' );
+    $title_b          = __( 'de tu jubilación.', 'quantia-hub' );
     $profiles_title_a = __( 'Tu perfil', 'quantia-hub' );
-    $profiles_title_b = __( 'para el retiro.', 'quantia-hub' );
-    $intro            = __( 'Cada perfil de retiro invierte de forma individual en un fondo de Quantia AFP.', 'quantia-hub' );
+    $profiles_title_b = __( 'para el jubilación.', 'quantia-hub' );
+    $intro            = __( 'Cada perfil de jubilación invierte de forma individual en un fondo de Quantia AFP.', 'quantia-hub' );
 }
 
 $fund_names  = wp_list_pluck( $funds, 'name' );
@@ -56,7 +56,7 @@ $marquee_x3  = trim( str_repeat( $marquee_raw, 3 ) );
                             </span>
                         </span>
                         <span class="pl-8 text-sm font-semibold text-ink/50 sm:pl-0">
-                            <?php echo esc_html( 'Individual' === $fund['asset'] ? __( 'Plan de retiro', 'quantia-hub' ) : $fund['asset'] ); ?>
+                            <?php echo esc_html( 'Individual' === $fund['asset'] ? __( 'Plan de jubilación', 'quantia-hub' ) : $fund['asset'] ); ?>
                         </span>
                     </div>
                 </li>

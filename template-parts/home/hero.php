@@ -33,7 +33,7 @@ $card_positions = array(
         <div data-parallax data-parallax-speed="-0.08">
             <p class="inline-flex items-center gap-2 text-sm font-medium text-white/80">
                 <span class="text-qh-300"><?php echo quantia_icon( 'shield-check', 'h-4 w-4' ); ?></span>
-                <?php esc_html_e( 'Respaldado por MMG Bank · Regulado en Panamá', 'quantia-hub' ); ?>
+                <?php esc_html_e( 'Una solución de MMG Bank · Regulado en Panamá', 'quantia-hub' ); ?>
             </p>
 
             <h1 id="hero-title"
@@ -44,7 +44,7 @@ $card_positions = array(
             </h1>
 
             <p class="mt-5 max-w-md text-base leading-relaxed text-white/75 sm:mt-7 sm:text-lg">
-                <?php esc_html_e( 'Ahorra, invierte y planifica tu retiro con el conocimiento de quienes llevan años haciéndolo.', 'quantia-hub' ); ?>
+                <?php esc_html_e( 'Ahorra, invierte y planifica tu jubilación con el conocimiento de quienes llevan años haciéndolo.', 'quantia-hub' ); ?>
             </p>
 
             <div class="mt-9 flex flex-wrap items-center gap-3">

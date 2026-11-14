@@ -135,7 +135,7 @@ function quantia_get_benefits(): array {
 /**
  * Devuelve los fondos de un plan.
  *
- * @param string $plan inversion o retiro.
+ * @param string $plan inversion o jubilación.
  * @return array
  */
 function quantia_get_funds( string $plan = 'inversion' ): array {
@@ -199,19 +199,19 @@ function quantia_get_investment_profiles(): array {
 }
 
 /**
- * Devuelve los perfiles de retiro.
+ * Devuelve los perfiles de jubilación.
  *
  * @return array
  */
 function quantia_get_retirement_profiles(): array {
-    return quantia_build_profiles( quantia_settings_rows( 'retirement_profiles' ), 'retiro' );
+    return quantia_build_profiles( quantia_settings_rows( 'retirement_profiles' ), 'jubilación' );
 }
 
 /**
  * Normaliza una lista de filas de perfil al formato que consumen las vistas.
  *
  * @param array  $rows Filas guardadas.
- * @param string $plan inversion o retiro.
+ * @param string $plan inversion o jubilación.
  * @return array
  */
 function quantia_build_profiles( array $rows, string $plan ): array {

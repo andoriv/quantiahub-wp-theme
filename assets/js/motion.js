@@ -1154,10 +1154,10 @@ function initLegalDocumentAccordion() {
             const allOpen = items.every( ( item ) => {
                 const btn = item.querySelector( '[data-legal-section-toggle]' );
                 return btn && btn.getAttribute( 'aria-expanded' ) === 'true';
-            } );
+            });
             toggleAllBtn.textContent = allOpen
-                ? qhTr( 'expandAll', 'Expandir todo' )
-                : qhTr( 'collapseAll', 'Contraer todo' );
+                ? qhTr( 'collapseAll', 'Contraer todo' )
+                : qhTr( 'expandAll', 'Expandir todo' );
         };
 
         items.forEach( ( item ) => {
@@ -1180,7 +1180,127 @@ function initLegalDocumentAccordion() {
                 updateToggleAllLabel();
             } );
         }
+
+        // LÓGICA NUEVA: Abrir sección si la URL tiene un hash que coincide
+        const hash = window.location.hash;
+        if ( hash ) {
+            const targetSection = root.querySelector( hash );
+            if ( targetSection && targetSection.hasAttribute( 'data-legal-section' ) ) {
+                const btn = targetSection.querySelector( '[data-legal-section-toggle]' );
+                if ( btn && btn.getAttribute( 'aria-expanded' ) === 'false' ) {
+                    applyState( targetSection, true );
+                    updateToggleAllLabel();
+                    
+                    // Hacemos scroll suave hacia la sección abierta después de un breve delay
+                    setTimeout( () => {
+                        targetSection.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+                    }, 100 );
+                }
+            }
+        }
     } );
+}
+
+/* ---------- Legal page navigation (Scroll Spy & Anchor Offset) ---------- */
+function initLegalPageNav() {
+    const docs         = Array.from( document.querySelectorAll( '[data-legal-doc]' ) );
+    const desktopLinks = Array.from( document.querySelectorAll( '[data-legal-nav]' ) );
+    const mobileLinks  = Array.from( document.querySelectorAll( '[data-legal-nav-mobile]' ) );
+
+    if ( ! docs.length ) return;
+
+    const baseDesktop   = [ 'border-transparent', 'text-ink/50', 'hover:text-ink' ];
+    const activeDesktop = [ 'border-qh', 'text-ink' ];
+    const baseMobile    = [ 'bg-mist', 'text-ink/65', 'hover:text-ink' ];
+    const activeMobile  = [ 'bg-ink', 'text-white' ];
+
+    const toggle = ( el, list, on ) => {
+        list.forEach( ( c ) => el.classList.toggle( c, on ) );
+    };
+
+    const setActive = ( slug ) => {
+        desktopLinks.forEach( ( link ) => {
+            const isActive = link.dataset.legalNav === slug;
+            toggle( link, baseDesktop, ! isActive );
+            toggle( link, activeDesktop, isActive );
+            if ( isActive ) link.setAttribute( 'aria-current', 'true' );
+            else link.removeAttribute( 'aria-current' );
+        } );
+        mobileLinks.forEach( ( link ) => {
+            const isActive = link.dataset.legalNavMobile === slug;
+            toggle( link, baseMobile, ! isActive );
+            toggle( link, activeMobile, isActive );
+            if ( isActive ) link.setAttribute( 'aria-current', 'true' );
+            else link.removeAttribute( 'aria-current' );
+        } );
+    };
+
+    // 1. SISTEMA DE SCROLL SPY (Calcula qué sección está visible)
+    const handleScroll = () => {
+        let currentSlug = docs[0].id;
+        
+        // Buscamos cuál es la sección que está más cerca del top de la pantalla (dejando espacio para el header)
+        docs.forEach( ( doc ) => {
+            const rect = doc.getBoundingClientRect();
+            // Si la parte superior de la sección está a menos de 150px del top, es la activa
+            if ( rect.top <= 150 ) {
+                currentSlug = doc.id;
+            }
+        } );
+        
+        setActive( currentSlug );
+    };
+
+    let ticking = false;
+    window.addEventListener( 'scroll', () => {
+        if ( ! ticking ) {
+            window.requestAnimationFrame( () => {
+                handleScroll();
+                ticking = false;
+            } );
+            ticking = true;
+        }
+    } );
+    
+    // Ejecutar al cargar para establecer el estado inicial
+    handleScroll();
+
+    // 2. SCROLL EXACTO CON OFFSET (Para que el header no tape el título)
+    const handleAnchorClick = ( e ) => {
+        e.preventDefault();
+        const link = e.currentTarget;
+        const targetId = link.getAttribute( 'href' ).replace( '#', '' );
+        const targetEl = document.getElementById( targetId );
+        
+        if ( targetEl ) {
+            // Calculamos la altura del header fijo (aprox 100px)
+            const headerOffset = 120; 
+            const elementPosition = targetEl.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.scrollY - headerOffset;
+  
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    };
+
+    [...desktopLinks, ...mobileLinks].forEach( ( link ) => {
+        link.addEventListener( 'click', handleAnchorClick );
+    } );
+
+    // Si entramos desde un enlace externo con ancla
+    if ( window.location.hash ) {
+        const target = document.querySelector( window.location.hash );
+        if ( target ) {
+            setTimeout(() => {
+                const headerOffset = 120;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - headerOffset;
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            }, 100);
+        }
+    }
 }
 
 /* ---------- Boot ---------- */
@@ -1206,6 +1326,7 @@ function boot() {
     initContactForm();
     initFaqTabsCarousel();
     initLegalDocumentAccordion();
+    initLegalPageNav();
 }
 
 if ( document.readyState === 'loading' ) {

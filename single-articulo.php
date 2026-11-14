@@ -135,7 +135,7 @@ $related = array_slice( $related, 0, 3 );
                         <?php esc_html_e( 'Ponlo en práctica', 'quantia-hub' ); ?><br><?php esc_html_e( 'desde la app.', 'quantia-hub' ); ?>
                     </h2>
                     <p class="mt-6 max-w-md text-base leading-relaxed text-white/80">
-                        <?php esc_html_e( 'Abre tu cuenta Quantia Hub y empieza con una alcancía, un portafolio o tu plan de retiro.', 'quantia-hub' ); ?>
+                        <?php esc_html_e( 'Abre tu cuenta Quantia Hub y empieza con una alcancía, un portafolio o tu plan de jubilación.', 'quantia-hub' ); ?>
                     </p>
                     <div class="mt-9">
                         <?php get_template_part( 'template-parts/components/download-app-button', null, array(

@@ -1,7 +1,7 @@
 <?php
 /**
  * Static app screen mockup for demo.
- * Args: screen (inicio|alcancias|inversiones|retiro|tarjeta|kuara)
+ * Args: screen (inicio|alcancias|inversiones|jubilación|tarjeta|kuara)
  *
  * @package QuantiaHub
  */
@@ -14,7 +14,7 @@ $tabs = array(
     array( 'key' => 'inicio',      'label' => 'Inicio',   'icon' => 'home' ),
     array( 'key' => 'alcancias',   'label' => 'Ahorro',   'icon' => 'piggy-bank' ),
     array( 'key' => 'inversiones', 'label' => 'Invertir', 'icon' => 'trending-up' ),
-    array( 'key' => 'retiro',      'label' => 'Retiro',   'icon' => 'sunset' ),
+    array( 'key' => 'jubilación',      'label' => 'Jubilación',   'icon' => 'sunset' ),
     array( 'key' => 'tarjeta',     'label' => 'Tarjeta',  'icon' => 'credit-card' ),
 );
 ?>
@@ -163,7 +163,7 @@ $tabs = array(
                     </div>
                 </div>
             </div>
-        <?php elseif ( 'retiro' === $screen ) : ?>
+        <?php elseif ( 'jubilación' === $screen ) : ?>
             <div class="px-4 pb-4">
                 <div class="-mx-4 bg-white px-4 pb-4 pt-2">
                     <p class="font-display text-sm font-bold text-ink">Fondo de jubilación</p>

@@ -14,7 +14,7 @@ $marquee_text = sprintf(
     __( 'Kuara 24/7', 'quantia-hub' ),
     __( 'Desde B/. 100', 'quantia-hub' ),
     __( 'Alcancías', 'quantia-hub' ),
-    __( 'Retiro', 'quantia-hub' ),
+    __( 'Jubilación', 'quantia-hub' ),
     __( 'Visa Débito', 'quantia-hub' )
 );
 $marquee_x3 = trim( str_repeat( $marquee_text, 3 ) );

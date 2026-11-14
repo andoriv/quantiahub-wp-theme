@@ -8,6 +8,7 @@ secrets.json
 
 # --- Carpetas Locales / Temporales ---
 script/
+scripts/
 restored/
 
 # --- Node.js & Dependencias ---
@@ -75,6 +76,7 @@ build/
 *.sql.gz
 *.log
 logs/
+*.bak
 
 # --- LaTeX (Documentos y Compilación) ---
 *.aux

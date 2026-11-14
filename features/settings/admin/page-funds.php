@@ -61,7 +61,7 @@ function quantia_settings_page_funds(): void {
                             <td>
                                 <select name="rows[<?php echo (int) $i; ?>][plan]" style="width:100%">
                                     <option value="inversion" <?php selected( $row['plan'] ?? '', 'inversion' ); ?>>Investment</option>
-                                    <option value="retiro" <?php selected( $row['plan'] ?? '', 'retiro' ); ?>>Retirement</option>
+                                    <option value="jubilación" <?php selected( $row['plan'] ?? '', 'jubilación' ); ?>>Retirement</option>
                                 </select>
                             </td>
                             <td><button type="button" class="button quantia-remove-row">×</button></td>
@@ -83,7 +83,7 @@ function quantia_settings_page_funds(): void {
             + '<td><input type="text" name="rows[' + i + '][fund_name]" style="width:100%"></td>'
             + '<td><select name="rows[' + i + '][asset_class]" style="width:100%"><option>Renta variable</option><option>Renta fija</option><option>Individual</option></select></td>'
             + '<td><select name="rows[' + i + '][swatch]" style="width:100%"><option value="bg-ink">Ink</option><option value="bg-qh">Green</option><option value="bg-qh-300">Light green</option><option value="bg-qh-700">Dark green</option></select></td>'
-            + '<td><select name="rows[' + i + '][plan]" style="width:100%"><option value="inversion">Investment</option><option value="retiro">Retirement</option></select></td>'
+            + '<td><select name="rows[' + i + '][plan]" style="width:100%"><option value="inversion">Investment</option><option value="jubilación">Retirement</option></select></td>'
             + '<td><button type="button" class="button quantia-remove-row">×</button></td>';
         tbody.appendChild(tr);
     });

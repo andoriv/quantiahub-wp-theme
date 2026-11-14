@@ -61,7 +61,7 @@ function quantia_faq_product_labels(): array {
         ''            => __( 'Centro de ayuda (general)', 'quantia-hub' ),
         'inversiones' => __( 'Inversiones', 'quantia-hub' ),
         'alcancias'   => __( 'Alcancías', 'quantia-hub' ),
-        'retiro'      => __( 'Retiro', 'quantia-hub' ),
+        'jubilación'      => __( 'Jubilación', 'quantia-hub' ),
         'tarjeta'     => __( 'Tarjeta Visa Débito', 'quantia-hub' ),
     );
 }

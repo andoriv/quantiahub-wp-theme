@@ -6,7 +6,7 @@ $p = $args['product'];
 $screen_map = array(
     'inversiones' => 'inversiones',
     'alcancias'   => 'alcancias',
-    'retiro'      => 'retiro',
+    'jubilación'      => 'jubilación',
     'tarjeta'     => 'tarjeta',
 );
 $screen = $screen_map[ $p['slug'] ] ?? 'inicio';

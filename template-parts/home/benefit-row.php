@@ -46,7 +46,7 @@ $marquee_x5   = trim( str_repeat( $marquee_text . ' ', 5 ) );
 
         <?php if ( ! empty( $funds ) ) : ?>
             <div class="mt-10 border-t border-ink/10 pt-6">
-                <p class="text-sm font-semibold text-ink/45"><?php esc_html_e( 'Los fondos detrás', 'quantia-hub' ); ?></p>
+                <p class="text-sm font-semibold text-ink/45"><?php esc_html_e( 'Oferta de fondos', 'quantia-hub' ); ?></p>
                 <ul class="mt-3 flex flex-wrap gap-x-5 gap-y-2">
                     <?php foreach ( $funds as $fund ) : ?>
                         <li>

@@ -249,6 +249,10 @@ function quantia_icons_registry(): array {
         'send'              => '<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>',
         'check-circle'      => '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',
         'lock'              => '<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+        'file-text'              => '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>',
+        'message-square-warning' => '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7v2"/><path d="M12 13h.01"/>',
+        'receipt'                => '<path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/>',
+        'arrow-down-right'       => '<path d="m7 7 10 10"/><path d="M17 7v10H7"/>',
     );
 }
 
@@ -264,7 +268,7 @@ function quantia_product_icon_name( string $slug ): string {
     $map = array(
         'inversiones' => 'trending-up',
         'alcancias'   => 'piggy-bank',
-        'retiro'      => 'sunset',
+        'jubilación'      => 'sunset',
         'tarjeta'     => 'credit-card',
     );
     return $map[ $slug ] ?? 'trending-up';
@@ -279,7 +283,7 @@ function quantia_product_icon_name( string $slug ): string {
  * @return string Nombre del icono.
  */
 function quantia_product_icon_from_url( string $url ): string {
-    foreach ( array( 'inversiones', 'alcancias', 'retiro', 'tarjeta' ) as $slug ) {
+    foreach ( array( 'inversiones', 'alcancias', 'jubilación', 'tarjeta' ) as $slug ) {
         if ( false !== strpos( $url, $slug ) ) {
             return quantia_product_icon_name( $slug );
         }
@@ -299,7 +303,7 @@ function quantia_product_option_icons( string $slug ): array {
     $map = array(
         'inversiones' => array( 'shield', 'scale', 'rocket', 'layers' ),
         'alcancias'   => array( 'target', 'infinity' ),
-        'retiro'      => array( 'smartphone', 'file-signature', 'calendar-clock', 'line-chart' ),
+        'jubilación'      => array( 'smartphone', 'file-signature', 'calendar-clock', 'line-chart' ),
         'tarjeta'     => array( 'globe', 'banknote', 'smartphone', 'shield-check' ),
     );
     return $map[ $slug ] ?? array();

@@ -6,7 +6,7 @@ $inquiry_types = array(
     __( 'Kuara y transferencias', 'quantia-hub' ),
     __( 'Tarjeta Visa Débito', 'quantia-hub' ),
     __( 'Inversiones', 'quantia-hub' ),
-    __( 'Retiro', 'quantia-hub' ),
+    __( 'Jubilación', 'quantia-hub' ),
     __( 'Cuenta de planilla', 'quantia-hub' ),
     __( 'Otro', 'quantia-hub' ),
 );

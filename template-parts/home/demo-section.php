@@ -14,7 +14,7 @@ $try_list = array(
     ),
     array(
         'title' => __( 'Explora un portafolio', 'quantia-hub' ),
-        'text'  => __( 'Conoce los perfiles de inversión y de retiro.', 'quantia-hub' ),
+        'text'  => __( 'Conoce los perfiles de inversión y de jubilación.', 'quantia-hub' ),
     ),
 );
 

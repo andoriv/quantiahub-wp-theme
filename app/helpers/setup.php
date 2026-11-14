@@ -199,7 +199,7 @@ function quantia_seed_products(): void {
     $products = array(
         'inversiones' => __( 'Investments', 'quantia-hub' ),
         'alcancias'   => __( 'Saving jars', 'quantia-hub' ),
-        'retiro'      => __( 'Retirement', 'quantia-hub' ),
+        'jubilación'      => __( 'Retirement', 'quantia-hub' ),
         'tarjeta'     => __( 'Visa debit card', 'quantia-hub' ),
     );
 

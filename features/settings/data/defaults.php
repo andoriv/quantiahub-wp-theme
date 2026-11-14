@@ -33,10 +33,10 @@ function quantia_settings_default( string $key ) {
                 array( 'fund_id' => 'global-allocation',    'fund_name' => 'MMG Global Allocation Fund', 'asset_class' => 'Renta variable', 'swatch' => 'bg-qh-300', 'plan' => 'inversion' ),
                 array( 'fund_id' => 'panama-allocation',    'fund_name' => 'MMG Panama Allocation Fund', 'asset_class' => 'Renta variable', 'swatch' => 'bg-qh',     'plan' => 'inversion' ),
                 array( 'fund_id' => 'fixed-income',         'fund_name' => 'MMG Fixed Income Fund',      'asset_class' => 'Renta fija',     'swatch' => 'bg-qh-700', 'plan' => 'inversion' ),
-                array( 'fund_id' => 'quantia-core',         'fund_name' => 'Quantia Core',               'asset_class' => 'Individual',     'swatch' => 'bg-qh-300', 'plan' => 'retiro' ),
-                array( 'fund_id' => 'quantia-growth',       'fund_name' => 'Quantia Growth',             'asset_class' => 'Individual',     'swatch' => 'bg-qh',     'plan' => 'retiro' ),
-                array( 'fund_id' => 'quantia-fixed-income', 'fund_name' => 'Quantia Fixed Income',       'asset_class' => 'Individual',     'swatch' => 'bg-qh-700', 'plan' => 'retiro' ),
-                array( 'fund_id' => 'quantia-select',       'fund_name' => 'Quantia Select',             'asset_class' => 'Individual',     'swatch' => 'bg-ink',    'plan' => 'retiro' ),
+                array( 'fund_id' => 'quantia-core',         'fund_name' => 'Quantia Core',               'asset_class' => 'Individual',     'swatch' => 'bg-qh-300', 'plan' => 'jubilación' ),
+                array( 'fund_id' => 'quantia-growth',       'fund_name' => 'Quantia Growth',             'asset_class' => 'Individual',     'swatch' => 'bg-qh',     'plan' => 'jubilación' ),
+                array( 'fund_id' => 'quantia-fixed-income', 'fund_name' => 'Quantia Fixed Income',       'asset_class' => 'Individual',     'swatch' => 'bg-qh-700', 'plan' => 'jubilación' ),
+                array( 'fund_id' => 'quantia-select',       'fund_name' => 'Quantia Select',             'asset_class' => 'Individual',     'swatch' => 'bg-ink',    'plan' => 'jubilación' ),
             ),
         ),
         'investment_profiles' => array(
@@ -75,7 +75,7 @@ function quantia_settings_default( string $key ) {
             'rows' => array(
                 array(
                     'profile_key' => 'conservador', 'name' => __( 'Conservador', 'quantia-hub' ), 'level' => 1, 'rate' => 0.05,
-                    'summary' => __( 'Priorizas cuidar lo acumulado para tu retiro.', 'quantia-hub' ),
+                    'summary' => __( 'Priorizas cuidar lo acumulado para tu jubilación.', 'quantia-hub' ),
                     'allocation' => array( array( 'fund' => 'quantia-select', 'pct' => 100 ) ),
                 ),
                 array(
@@ -150,7 +150,7 @@ function quantia_settings_default( string $key ) {
                     'visual'      => 'ahorro-vs-inversion',
                     'points'      => array(
                         __( 'Primero un fondo de imprevistos disponible, luego inversión de largo plazo.', 'quantia-hub' ),
-                        __( 'Las Alcancías ordenan la liquidez; Inversiones y Retiro trabajan el plazo.', 'quantia-hub' ),
+                        __( 'Las Alcancías ordenan la liquidez; Inversiones y Jubilación trabajan el plazo.', 'quantia-hub' ),
                         __( 'Ambos pueden convivir dentro de la misma app.', 'quantia-hub' ),
                     ),
                 ),

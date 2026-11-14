@@ -61,8 +61,8 @@ function quantia_get_product_nav(): array {
                 'icon'        => 'piggy-bank',
             ),
             array(
-                'label'       => __( 'Retiro', 'quantia-hub' ),
-                'url'         => home_url( '/productos/retiro/' ),
+                'label'       => __( 'Jubilación', 'quantia-hub' ),
+                'url'         => home_url( '/productos/jubilación/' ),
                 'description' => __( 'Fondo de jubilación Quantia AFP', 'quantia-hub' ),
                 'icon'        => 'sunset',
             ),

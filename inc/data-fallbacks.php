@@ -37,7 +37,7 @@ function quantia_fallback_hero_background(): string {
 
 function quantia_fallback_hero_credentials(): array {
     return array(
-        array( 'value' => '20+',       'label' => __( 'años de MMG Bank en banca de inversión', 'quantia-hub' ) ),
+        array( 'value' => '30+',       'label' => __( 'años de MMG Bank en banca de inversión', 'quantia-hub' ) ),
         array( 'value' => 'SBP · SMV', 'label' => __( 'Banco regulado y supervisado en Panamá', 'quantia-hub' ) ),
         array( 'value' => '4',         'label' => __( 'fondos gestionados por especialistas', 'quantia-hub' ) ),
         array( 'value' => 'Latinex',   'label' => __( 'Participante de la Bolsa de Valores', 'quantia-hub' ) ),
@@ -48,7 +48,7 @@ function quantia_fallback_hero_products(): array {
     return array(
         array( 'slug' => 'inversiones', 'label' => __( 'Inversiones', 'quantia-hub' ),  'value' => '+4.8%',                     'detail' => __( 'Tu portafolio este año', 'quantia-hub' ),      'dark' => false, 'speed' => -140 ),
         array( 'slug' => 'alcancias',   'label' => __( 'Alcancías', 'quantia-hub' ),    'value' => 'US$900',                    'detail' => __( 'Viaje, 60% de tu meta', 'quantia-hub' ),      'progress' => 60, 'dark' => false, 'speed' => -70 ),
-        array( 'slug' => 'retiro',      'label' => __( 'Retiro', 'quantia-hub' ),       'value' => 'US$8,920',                  'detail' => __( 'Fondo Quantia AFP', 'quantia-hub' ),          'dark' => false, 'speed' => -200 ),
+        array( 'slug' => 'jubilación',      'label' => __( 'Jubilación', 'quantia-hub' ),       'value' => 'US$8,920',                  'detail' => __( 'Fondo Quantia AFP', 'quantia-hub' ),          'dark' => false, 'speed' => -200 ),
         array( 'slug' => 'tarjeta',     'label' => __( 'Tarjetas', 'quantia-hub' ),     'value' => __( 'Visa Débito', 'quantia-hub' ), 'detail' => '•••• 0104',                            'dark' => true,  'speed' => -110 ),
     );
 }
@@ -62,7 +62,7 @@ function quantia_fallback_benefits(): array {
             'stat' => '100',
             'stat_prefix' => 'B/.',
             'stat_suffix' => __( 'para empezar', 'quantia-hub' ),
-            'description' => __( 'Elige tu perfil (Pasajero, Navegante o Aventurero) y tu dinero se distribuye en fondos diversificados administrados por MMG Asset Management.', 'quantia-hub' ),
+            'description' => __( 'Descubre tu perfil (Pasajero, Navegante o Aventurero) y tu dinero se distribuye en fondos diversificados administrados por MMG Asset Management.', 'quantia-hub' ),
             'points' => array(
                 __( 'Compra de activos sin costo', 'quantia-hub' ),
                 __( 'Dividendos reinvertidos automáticamente', 'quantia-hub' ),
@@ -75,23 +75,23 @@ function quantia_fallback_benefits(): array {
             'funds_url' => home_url( '/productos/inversiones/#fondos' ),
         ),
         array(
-            'id' => 'retiro',
-            'product' => __( 'Retiro', 'quantia-hub' ),
-            'title' => __( 'Tu retiro, desde hoy', 'quantia-hub' ),
+            'id' => 'jubilación',
+            'product' => __( 'Jubilación', 'quantia-hub' ),
+            'title' => __( 'Construye hoy la independencia de tu futuro', 'quantia-hub' ),
             'stat' => '3',
             'stat_prefix' => '',
-            'stat_suffix' => __( 'perfiles de retiro', 'quantia-hub' ),
+            'stat_suffix' => __( 'perfiles de jubilación', 'quantia-hub' ),
             'description' => __( 'Conservador, Moderado o Agresivo: elige el plan que va con tu etapa y aporta mes a mes con Quantia AFP. El tiempo y el interés compuesto hacen el resto.', 'quantia-hub' ),
             'points' => array(
                 __( 'Fondos Quantia Select, Fixed Income y Growth', 'quantia-hub' ),
                 __( 'Aportes programados cada mes', 'quantia-hub' ),
                 __( 'Saldo e historial siempre a la vista', 'quantia-hub' ),
             ),
-            'screen' => 'retiro',
-            'screen_label' => __( 'Pantalla de retiro de la app con el saldo acumulado del fondo', 'quantia-hub' ),
-            'link' => array( 'label' => __( 'Conoce Retiro', 'quantia-hub' ), 'url' => home_url( '/productos/retiro/' ) ),
-            'funds_plan' => 'retiro',
-            'funds_url' => home_url( '/productos/retiro/#fondos' ),
+            'screen' => 'jubilación',
+            'screen_label' => __( 'Pantalla de jubilación de la app con el saldo acumulado del fondo', 'quantia-hub' ),
+            'link' => array( 'label' => __( 'Conoce Jubilación', 'quantia-hub' ), 'url' => home_url( '/productos/jubilación/' ) ),
+            'funds_plan' => 'jubilación',
+            'funds_url' => home_url( '/productos/jubilación/#fondos' ),
         ),
         array(
             'id' => 'interes',
@@ -128,15 +128,15 @@ function quantia_fallback_benefits(): array {
             'link' => array( 'label' => __( 'Preguntas sobre Kuara', 'quantia-hub' ), 'url' => home_url( '/soporte/' ) ),
         ),
         array(
-            'id' => 'alcancias',
+            'id'      => 'alcancias',
             'product' => __( 'Alcancías', 'quantia-hub' ),
-            'title' => __( 'Separa tu dinero por metas', 'quantia-hub' ),
-            'stat' => __( 'Sin costo', 'quantia-hub' ),
+            'title'   => __( 'Tú decides cuánto ahorrar', 'quantia-hub' ),
+            'stat'    => __( 'A tu ritmo', 'quantia-hub' ),
             'stat_prefix' => '',
             'stat_suffix' => __( 'crear alcancías', 'quantia-hub' ),
             'description' => __( 'Crea alcancías META con fecha y monto objetivo, o LIBRE para ahorrar a tu ritmo. Programa aportes automáticos y mira tu avance.', 'quantia-hub' ),
             'points' => array(
-                __( 'Aportes y retiros sin penalización', 'quantia-hub' ),
+                __( 'Aportes y jubilacións sin penalización', 'quantia-hub' ),
                 __( 'Aportes automáticos programados', 'quantia-hub' ),
                 __( 'Avance de cada meta siempre a la vista', 'quantia-hub' ),
             ),
@@ -174,17 +174,17 @@ function quantia_fallback_funds( string $plan ): array {
         );
     }
     return array(
-        array( 'name' => 'Quantia Core',         'swatch' => 'bg-qh-300', 'asset' => 'Plan de retiro' ),
-        array( 'name' => 'Quantia Growth',       'swatch' => 'bg-qh',     'asset' => 'Plan de retiro' ),
-        array( 'name' => 'Quantia Fixed Income', 'swatch' => 'bg-qh-700', 'asset' => 'Plan de retiro' ),
-        array( 'name' => 'Quantia Select',       'swatch' => 'bg-ink',    'asset' => 'Plan de retiro' ),
+        array( 'name' => 'Quantia Core',         'swatch' => 'bg-qh-300', 'asset' => 'Plan de jubilación' ),
+        array( 'name' => 'Quantia Growth',       'swatch' => 'bg-qh',     'asset' => 'Plan de jubilación' ),
+        array( 'name' => 'Quantia Fixed Income', 'swatch' => 'bg-qh-700', 'asset' => 'Plan de jubilación' ),
+        array( 'name' => 'Quantia Select',       'swatch' => 'bg-ink',    'asset' => 'Plan de jubilación' ),
     );
 }
 
 function quantia_fallback_about_highlights(): array {
     return array(
         array(
-            'title'       => __( 'Respaldo de MMG Bank', 'quantia-hub' ),
+            'title'       => __( 'Una solución de MMG Bank', 'quantia-hub' ),
             'description' => __( 'Quantia es la aplicación financiera de MMG Bank Corporation, banca de inversión con trayectoria en Panamá.', 'quantia-hub' ),
         ),
         array(
@@ -237,8 +237,8 @@ function quantia_fallback_testimonials(): array {
         array(
             'name'      => 'Marisol',
             'detail'    => __( '50 años, contadora', 'quantia-hub' ),
-            'product'   => __( 'Retiro', 'quantia-hub' ),
-            'quote'     => __( 'Saber que detrás está MMG Bank me dio la confianza para empezar mi plan de retiro.', 'quantia-hub' ),
+            'product'   => __( 'Jubilación', 'quantia-hub' ),
+            'quote'     => __( 'Saber que detrás está MMG Bank me dio la confianza para empezar mi plan de jubilación.', 'quantia-hub' ),
             'highlight' => array( 'MMG', 'Bank', 'confianza' ),
         ),
         array(
@@ -306,7 +306,7 @@ function quantia_fallback_app_tabs(): array {
         array( 'key' => 'inicio',      'label' => __( 'Inicio', 'quantia-hub' ),     'title' => __( 'Tu cuenta en una pantalla', 'quantia-hub' ),  'description' => __( 'Saldo disponible, accesos rápidos y el resumen de todos tus productos.', 'quantia-hub' ) ),
         array( 'key' => 'alcancias',   'label' => __( 'Ahorro', 'quantia-hub' ),     'title' => __( 'Alcancías META y LIBRE', 'quantia-hub' ),     'description' => __( 'Avance de cada objetivo, interés ganado y aportes programados.', 'quantia-hub' ) ),
         array( 'key' => 'inversiones', 'label' => __( 'Invertir', 'quantia-hub' ),   'title' => __( 'Tu portafolio', 'quantia-hub' ),             'description' => __( 'Rendimiento, perfil de riesgo y distribución por fondo.', 'quantia-hub' ) ),
-        array( 'key' => 'retiro',      'label' => __( 'Retiro', 'quantia-hub' ),     'title' => __( 'Fondo de jubilación', 'quantia-hub' ),        'description' => __( 'Aportes, historial y saldo de tu fondo en Quantia AFP.', 'quantia-hub' ) ),
+        array( 'key' => 'jubilación',      'label' => __( 'Jubilación', 'quantia-hub' ),     'title' => __( 'Fondo de jubilación', 'quantia-hub' ),        'description' => __( 'Aportes, historial y saldo de tu fondo en Quantia AFP.', 'quantia-hub' ) ),
         array( 'key' => 'tarjeta',     'label' => __( 'Tarjeta', 'quantia-hub' ),    'title' => __( 'Visa Débito', 'quantia-hub' ),               'description' => __( 'Movimientos al instante y bloqueo de tu tarjeta con un toque.', 'quantia-hub' ) ),
     );
 }
@@ -536,7 +536,7 @@ function quantia_fallback_products(): array {
             ),
             'fees'             => array(
                 array( 'concept' => __( 'Creación de alcancías', 'quantia-hub' ), 'cost' => __( 'Sin costo', 'quantia-hub' ) ),
-                array( 'concept' => __( 'Aportes y retiros', 'quantia-hub' ),     'cost' => __( 'Sin costo', 'quantia-hub' ), 'note' => __( 'Sin penalización ni plazos forzosos', 'quantia-hub' ) ),
+                array( 'concept' => __( 'Aportes y jubilacións', 'quantia-hub' ),     'cost' => __( 'Sin costo', 'quantia-hub' ), 'note' => __( 'Sin penalización ni plazos forzosos', 'quantia-hub' ) ),
                 array( 'concept' => __( 'Interés sobre saldo promedio mensual', 'quantia-hub' ), 'cost' => __( '4% anual', 'quantia-hub' ), 'note' => __( 'Desde B/. 0.01 hasta B/. 50,000.00. Tasa sujeta a cambios', 'quantia-hub' ) ),
             ),
             'faqs'             => array(
@@ -548,10 +548,10 @@ function quantia_fallback_products(): array {
             'cta'              => 'app',
             'cta_label'        => __( 'Comienza ya', 'quantia-hub' ),
         ),
-        'retiro' => array(
-            'slug'             => 'retiro',
-            'key'              => 'retiro',
-            'name'             => __( 'Retiro', 'quantia-hub' ),
+        'jubilación' => array(
+            'slug'             => 'jubilación',
+            'key'              => 'jubilación',
+            'name'             => __( 'Jubilación', 'quantia-hub' ),
             'eyebrow'          => __( 'Quantia AFP', 'quantia-hub' ),
             'title'            => __( 'Fondo de', 'quantia-hub' ),
             'title_highlight'  => __( 'jubilación', 'quantia-hub' ),
@@ -584,7 +584,7 @@ function quantia_fallback_products(): array {
                 array( 'title' => __( 'Visibilidad en la app', 'quantia-hub' ),        'description' => __( 'Tu fondo aparece junto a tus demás productos Quantia.', 'quantia-hub' ) ),
             ),
             'steps'            => array(
-                array( 'title' => __( 'Solicita el inicio en la app', 'quantia-hub' ),        'description' => __( 'Entra a la sección de Retiro en Quantia Hub y solicita tu apertura.', 'quantia-hub' ) ),
+                array( 'title' => __( 'Solicita el inicio en la app', 'quantia-hub' ),        'description' => __( 'Entra a la sección de Jubilación en Quantia Hub y solicita tu apertura.', 'quantia-hub' ) ),
                 array( 'title' => __( 'Completa tu apertura en Quantia AFP', 'quantia-hub' ), 'description' => __( 'Firma la documentación del fondo y define tu plan de aportes.', 'quantia-hub' ) ),
                 array( 'title' => __( 'Programa y da seguimiento', 'quantia-hub' ),           'description' => __( 'Automatiza tus aportes y revisa tu historial desde Quantia Hub.', 'quantia-hub' ) ),
             ),
@@ -602,7 +602,7 @@ function quantia_fallback_products(): array {
             'cta'              => 'app',
             'cta_label'        => __( 'Comienza ya', 'quantia-hub' ),
             'external_link'    => array( 'label' => __( 'Ver tarifario Quantia AFP', 'quantia-hub' ), 'href' => 'https://www.quantiaafp.com' ),
-            'funds_plan'       => 'retiro',
+            'funds_plan'       => 'jubilación',
         ),
         'tarjeta' => array(
             'slug'             => 'tarjeta',
@@ -629,7 +629,7 @@ function quantia_fallback_products(): array {
             'options_intro'    => __( 'Lo que obtienes al usar tu Visa Débito Quantia.', 'quantia-hub' ),
             'options'          => array(
                 array( 'title' => __( 'Aceptación Visa', 'quantia-hub' ),      'description' => __( 'Paga en comercios físicos y digitales que aceptan Visa, en Panamá y fuera.', 'quantia-hub' ) ),
-                array( 'title' => __( 'Retiros en cajeros', 'quantia-hub' ),   'description' => __( 'Retira efectivo en la red de cajeros disponible en el país.', 'quantia-hub' ) ),
+                array( 'title' => __( 'Jubilacións en cajeros', 'quantia-hub' ),   'description' => __( 'Retira efectivo en la red de cajeros disponible en el país.', 'quantia-hub' ) ),
                 array( 'title' => __( 'Control desde la app', 'quantia-hub' ), 'description' => __( 'Consulta movimientos y bloquea o desbloquea tu tarjeta cuando lo necesites.', 'quantia-hub' ) ),
                 array( 'title' => __( 'Seguro antifraude', 'quantia-hub' ),    'description' => __( 'Cobertura ante uso no autorizado conforme a las condiciones del producto.', 'quantia-hub' ) ),
             ),
@@ -701,17 +701,17 @@ function quantia_fallback_investment_profiles(): array {
 function quantia_fallback_retirement_profiles(): array {
     return array(
         array(
-            'key' => 'conservador', 'name' => __( 'Conservador', 'quantia-hub' ), 'plan' => 'retiro', 'level' => 1, 'rate' => 0.05,
-            'summary' => __( 'Priorizas cuidar lo acumulado para tu retiro.', 'quantia-hub' ),
+            'key' => 'conservador', 'name' => __( 'Conservador', 'quantia-hub' ), 'plan' => 'jubilación', 'level' => 1, 'rate' => 0.05,
+            'summary' => __( 'Priorizas cuidar lo acumulado para tu jubilación.', 'quantia-hub' ),
             'allocation' => array( array( 'fund' => 'quantia-select', 'pct' => 100 ) ),
         ),
         array(
-            'key' => 'moderado', 'name' => __( 'Moderado', 'quantia-hub' ), 'plan' => 'retiro', 'level' => 2, 'rate' => 0.06,
+            'key' => 'moderado', 'name' => __( 'Moderado', 'quantia-hub' ), 'plan' => 'jubilación', 'level' => 2, 'rate' => 0.06,
             'summary' => __( 'Buscas un crecimiento constante con variación moderada.', 'quantia-hub' ),
             'allocation' => array( array( 'fund' => 'quantia-fixed-income', 'pct' => 100 ) ),
         ),
         array(
-            'key' => 'agresivo', 'name' => __( 'Agresivo', 'quantia-hub' ), 'plan' => 'retiro', 'level' => 3, 'rate' => 0.08,
+            'key' => 'agresivo', 'name' => __( 'Agresivo', 'quantia-hub' ), 'plan' => 'jubilación', 'level' => 3, 'rate' => 0.08,
             'summary' => __( 'Tienes tiempo por delante y buscas el mayor crecimiento posible.', 'quantia-hub' ),
             'allocation' => array( array( 'fund' => 'quantia-growth', 'pct' => 100 ) ),
         ),
@@ -768,7 +768,7 @@ function quantia_asset_class_info(): array {
     return array(
         'Renta variable' => __( 'Inversiones en acciones de empresas, cuyo valor fluctúa según el mercado.', 'quantia-hub' ),
         'Renta fija'     => __( 'Inversiones en bonos para obtener ingresos con menor riesgo.', 'quantia-hub' ),
-        'Individual'     => __( 'Tu plan de retiro invierte en un solo fondo de Quantia AFP.', 'quantia-hub' ),
+        'Individual'     => __( 'Tu plan de jubilación invierte en un solo fondo de Quantia AFP.', 'quantia-hub' ),
     );
 }
 
@@ -782,7 +782,7 @@ function quantia_fallback_product_image( string $slug, string $kind = 'hero' ): 
             'hero'   => home_url( '/wp-content/uploads/2026/10/cece73f6-16ae-46da-b9c2-29a7511db492.jpg' ),
             'detail' => home_url( '/wp-content/uploads/2026/10/e9bb4a41-0739-4cbb-9ee7-4658599e4036.jpg' ),
         ),
-        'retiro' => array(
+        'jubilación' => array(
             'hero'   => home_url( '/wp-content/uploads/2026/10/49e4de75-73c4-43ea-977b-6f4f95825596.jpg' ),
             'detail' => home_url( '/wp-content/uploads/2026/10/b4fe8526-17d9-455f-9505-13bc2940af4f.jpg' ),
         ),

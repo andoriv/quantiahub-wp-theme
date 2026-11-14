@@ -66,7 +66,7 @@ function quantia_settings_page_benefits(): void {
                                 <th><?php esc_html_e( 'Phone screen', 'quantia-hub' ); ?></th>
                                 <td>
                                     <select name="rows[<?php echo (int) $i; ?>][screen]">
-                                        <?php foreach ( array( 'inicio', 'inversiones', 'alcancias', 'retiro', 'tarjeta', 'kuara' ) as $s ) : ?>
+                                        <?php foreach ( array( 'inicio', 'inversiones', 'alcancias', 'jubilación', 'tarjeta', 'kuara' ) as $s ) : ?>
                                             <option value="<?php echo esc_attr( $s ); ?>" <?php selected( $row['screen'] ?? 'inicio', $s ); ?>><?php echo esc_html( $s ); ?></option>
                                         <?php endforeach; ?>
                                     </select>
@@ -86,7 +86,7 @@ function quantia_settings_page_benefits(): void {
                                     <select name="rows[<?php echo (int) $i; ?>][funds_plan]">
                                         <option value="" <?php selected( $row['funds_plan'] ?? '', '' ); ?>>None</option>
                                         <option value="inversion" <?php selected( $row['funds_plan'] ?? '', 'inversion' ); ?>>Investment</option>
-                                        <option value="retiro" <?php selected( $row['funds_plan'] ?? '', 'retiro' ); ?>>Retirement</option>
+                                        <option value="jubilación" <?php selected( $row['funds_plan'] ?? '', 'jubilación' ); ?>>Retirement</option>
                                     </select>
                                     <input type="url" name="rows[<?php echo (int) $i; ?>][funds_url]" value="<?php echo esc_attr( $row['funds_url'] ?? '' ); ?>" placeholder="Funds URL" class="regular-text">
                                 </td>
@@ -115,9 +115,9 @@ function quantia_settings_page_benefits(): void {
             + '<tr><th>Statistic</th><td><input type="text" name="rows[' + i + '][stat_prefix]" placeholder="Prefix" style="width:80px"><input type="text" name="rows[' + i + '][stat]" placeholder="Value" style="width:120px"><input type="text" name="rows[' + i + '][stat_suffix]" placeholder="Suffix" style="width:200px"></td></tr>'
             + '<tr><th>Description</th><td><textarea name="rows[' + i + '][description]" rows="3" class="large-text"></textarea></td></tr>'
             + '<tr><th>Points</th><td><textarea name="rows[' + i + '][points_text]" rows="4" class="large-text" placeholder="One point per line"></textarea></td></tr>'
-            + '<tr><th>Phone screen</th><td><select name="rows[' + i + '][screen]"><option value="inicio">inicio</option><option value="inversiones">inversiones</option><option value="alcancias">alcancias</option><option value="retiro">retiro</option><option value="tarjeta">tarjeta</option><option value="kuara">kuara</option></select> <input type="text" name="rows[' + i + '][screen_label]" class="regular-text" placeholder="Accessibility label"></td></tr>'
+            + '<tr><th>Phone screen</th><td><select name="rows[' + i + '][screen]"><option value="inicio">inicio</option><option value="inversiones">inversiones</option><option value="alcancias">alcancias</option><option value="jubilación">jubilación</option><option value="tarjeta">tarjeta</option><option value="kuara">kuara</option></select> <input type="text" name="rows[' + i + '][screen_label]" class="regular-text" placeholder="Accessibility label"></td></tr>'
             + '<tr><th>Link</th><td><input type="text" name="rows[' + i + '][link_label]" placeholder="Label"> <input type="url" name="rows[' + i + '][link_url]" placeholder="https://" class="regular-text"></td></tr>'
-            + '<tr><th>Funds plan</th><td><select name="rows[' + i + '][funds_plan]"><option value="">None</option><option value="inversion">Investment</option><option value="retiro">Retirement</option></select> <input type="url" name="rows[' + i + '][funds_url]" placeholder="Funds URL" class="regular-text"></td></tr>'
+            + '<tr><th>Funds plan</th><td><select name="rows[' + i + '][funds_plan]"><option value="">None</option><option value="inversion">Investment</option><option value="jubilación">Retirement</option></select> <input type="url" name="rows[' + i + '][funds_url]" placeholder="Funds URL" class="regular-text"></td></tr>'
             + '</table>'
             + '<p><button type="button" class="button quantia-remove-benefit">Remove this benefit</button></p>';
         wrap.appendChild(card);

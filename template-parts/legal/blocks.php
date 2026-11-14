@@ -7,9 +7,10 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$blocks = $args['blocks'] ?? array();
+// Obtener datos desde $args o get_query_var
+$blocks = $args['blocks'] ?? get_query_var( 'legal_blocks' );
 
-if ( empty( $blocks ) ) {
+if ( empty( $blocks ) || ! is_array( $blocks ) ) {
     return;
 }
 ?>
@@ -33,7 +34,7 @@ if ( empty( $blocks ) ) {
             </<?php echo $tag; ?>>
 
         <?php elseif ( 'defs' === $type && ! empty( $block['items'] ) ) : ?>
-            <dl class="divide-y divide-ink/10 border-y border-ink/10">
+            <dl class="divide-y divide-ink/10">
                 <?php foreach ( $block['items'] as $item ) : ?>
                     <div class="grid grid-cols-1 gap-1 py-4 md:grid-cols-[220px_1fr] md:gap-6">
                         <dt class="font-display text-[15px] font-bold text-ink"><?php echo esc_html( $item['term'] ?? '' ); ?></dt>
