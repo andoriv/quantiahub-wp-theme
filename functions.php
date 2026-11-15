@@ -48,3 +48,28 @@ define( 'QUANTIA_URI', get_template_directory_uri() );
  * features pendientes de migración.
  */
 require_once QUANTIA_DIR . '/app/bootstrap.php';
+
+/**
+ * Devuelve la tasa anual de la Alcancía como número (ej. 4.0).
+ * Acepta que la opción venga como 4, 4.0, "4%" o 0.04 y la normaliza a porcentaje.
+ */
+function quantia_savings_rate(): float {
+    $rate = quantia_option( 'savings_interest_rate', 4 ); // ← ajusta el key real
+    $rate = is_numeric( $rate ) ? (float) $rate : 4.0;
+
+    // Si viene como decimal (0.04) lo pasamos a porcentaje (4)
+    if ( $rate > 0 && $rate < 1 ) {
+        $rate *= 100;
+    }
+    return $rate;
+}
+
+/**
+ * Devuelve la tasa formateada para mostrar, ej. "4%" o "4.5%".
+ */
+function quantia_savings_rate_label(): string {
+    $rate = quantia_savings_rate();
+    // Quita ceros sobrantes: 4.00 → 4 ; 4.50 → 4.5
+    $formatted = rtrim( rtrim( number_format( $rate, 2, '.', '' ), '0' ), '.' );
+    return $formatted . '%';
+}

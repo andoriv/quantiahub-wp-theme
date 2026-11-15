@@ -2,14 +2,17 @@
 /**
  * Settings save handlers.
  *
- * Cada sección tiene su propio handler que valida el nonce, sanitiza el array
- * recibido y guarda la opción correspondiente con update_option. Después del
- * guardado redirige a la misma página con el flag saved para mostrar el aviso.
- *
  * @package QuantiaHub
  */
 
 defined( 'ABSPATH' ) || exit;
+
+function quantia_parse_float( $value ) {
+    if ( is_string( $value ) ) {
+        $value = str_replace( ',', '.', $value );
+    }
+    return (float) $value;
+}
 
 add_action( 'admin_post_quantia_settings_save_calculator', 'quantia_settings_save_calculator' );
 function quantia_settings_save_calculator(): void {
@@ -27,16 +30,17 @@ function quantia_settings_save_calculator(): void {
             'key'  => sanitize_key( $row['key'] ),
             'name' => sanitize_text_field( $row['name'] ?? '' ),
             'kind' => sanitize_text_field( $row['kind'] ?? '' ),
-            'rate' => (float) ( $row['rate'] ?? 0 ),
+            'rate' => quantia_parse_float( $row['rate'] ?? 0 ),
         );
     }
 
     $value = array(
         'options'         => $options,
         'default_rate'    => sanitize_key( $_POST['default_rate'] ?? 'navegante' ),
-        'default_initial' => (int) ( $_POST['default_initial'] ?? 500 ),
-        'default_monthly' => (int) ( $_POST['default_monthly'] ?? 100 ),
+        'default_initial' => quantia_parse_float( $_POST['default_initial'] ?? 500 ),
+        'default_monthly' => quantia_parse_float( $_POST['default_monthly'] ?? 100 ),
         'default_years'   => (int) ( $_POST['default_years'] ?? 15 ),
+        'disclaimer'      => sanitize_textarea_field( $_POST['disclaimer'] ?? '' ),
     );
 
     quantia_settings_update( 'calculator', $value );
@@ -140,7 +144,7 @@ function quantia_settings_save_profiles(): void {
             }
             $allocation[] = array(
                 'fund' => sanitize_key( $parts[0] ),
-                'pct'  => (float) $parts[1],
+                'pct'  => quantia_parse_float( $parts[1] ),
             );
         }
 
@@ -148,7 +152,7 @@ function quantia_settings_save_profiles(): void {
             'profile_key' => sanitize_key( $row['profile_key'] ),
             'name'        => sanitize_text_field( $row['name'] ?? '' ),
             'level'       => (int) ( $row['level'] ?? 1 ),
-            'rate'        => (float) ( $row['rate'] ?? 0 ),
+            'rate'        => quantia_parse_float( $row['rate'] ?? 0 ),
             'summary'     => sanitize_textarea_field( $row['summary'] ?? '' ),
             'allocation'  => $allocation,
         );
@@ -167,7 +171,7 @@ function quantia_settings_save_product_data(): void {
     check_admin_referer( 'quantia_settings_product_data' );
 
     $value = array(
-        'account_rate'         => (float) ( $_POST['account_rate'] ?? 0.04 ),
+        'account_rate'         => quantia_parse_float( $_POST['account_rate'] ?? 0.04 ),
         'account_max_balance'  => (int) ( $_POST['account_max_balance'] ?? 50000 ),
         'investment_minimum'   => (int) ( $_POST['investment_minimum'] ?? 100 ),
         'investment_sale_fee'  => sanitize_text_field( $_POST['investment_sale_fee'] ?? '1% + ITBMS' ),

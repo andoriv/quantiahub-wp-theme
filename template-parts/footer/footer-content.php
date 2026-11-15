@@ -173,11 +173,11 @@ $site_url   = quantia_option( 'site_url', 'https://quantiahub.com' );
 
         <div class="flex flex-wrap items-center justify-center gap-3 border-t border-white/10 pt-8">
             <a href="<?php echo esc_url( $site_url ); ?>" class="rounded-full bg-white px-6 py-2.5 text-xs font-semibold text-ink transition-colors hover:bg-qh-100">
-                <?php echo esc_html( $domain ); ?>
+                Quantia Hub
             </a>
             <a href="<?php echo esc_url( $bank_url ); ?>" target="_blank" rel="noopener noreferrer"
                class="rounded-full border border-white/20 px-6 py-2.5 text-xs font-semibold text-white/80 transition-colors hover:border-qh hover:text-qh-300">
-                MMG Bank
+                MMG Bank Corporation
             </a>
         </div>
 
@@ -193,7 +193,6 @@ $site_url   = quantia_option( 'site_url', 'https://quantiahub.com' );
             <p class="mt-6 text-[10px] leading-relaxed text-white/40">
                 <?php
                 printf(
-                    /* translators: 1: brand, 2: bank, 3: market */
                     esc_html__( '%1$s es la aplicación financiera de %2$s, entidad regulada en Panamá. La información de este sitio es de carácter informativo y no constituye una oferta ni una recomendación de inversión. Consulta tarifas vigentes y documentos regulatorios antes de contratar. Operación exclusiva para %3$s.', 'quantia-hub' ),
                     esc_html( $full_brand ),
                     esc_html( $bank ),

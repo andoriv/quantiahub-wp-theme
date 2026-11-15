@@ -32,7 +32,7 @@ function quantia_fallback_hero_background(): string {
         return quantia_asset( 'assets/img/hero-bg.jpg' );
     }
 
-    return home_url( '/wp-content/uploads/2026/10/af429b5c-4afe-408f-904c-3b95da8b1a10.jpg' );
+    return home_url( '/wp-content/uploads/2026/11/MMG.webp' );
 }
 
 function quantia_fallback_hero_credentials(): array {
@@ -56,7 +56,7 @@ function quantia_fallback_hero_products(): array {
 function quantia_fallback_benefits(): array {
     return array(
         array(
-            'id' => 'inversiones',
+            'benefit_id' => 'inversiones',
             'product' => __( 'Inversiones', 'quantia-hub' ),
             'title' => __( 'Invierte con la experiencia de MMG', 'quantia-hub' ),
             'stat' => '100',
@@ -75,7 +75,7 @@ function quantia_fallback_benefits(): array {
             'funds_url' => home_url( '/productos/inversiones/#fondos' ),
         ),
         array(
-            'id' => 'jubilación',
+            'benefit_id' => 'jubilación',
             'product' => __( 'Jubilación', 'quantia-hub' ),
             'title' => __( 'Construye hoy la independencia de tu futuro', 'quantia-hub' ),
             'stat' => '3',
@@ -94,7 +94,7 @@ function quantia_fallback_benefits(): array {
             'funds_url' => home_url( '/productos/jubilación/#fondos' ),
         ),
         array(
-            'id' => 'interes',
+            'benefit_id' => 'interes',
             'product' => __( 'Cuenta corriente', 'quantia-hub' ),
             'title' => __( 'Tu cuenta te paga intereses', 'quantia-hub' ),
             'stat' => '4%',
@@ -111,7 +111,7 @@ function quantia_fallback_benefits(): array {
             'link' => array( 'label' => __( 'Ver tarifas de la cuenta', 'quantia-hub' ), 'url' => home_url( '/tarifas/' ) ),
         ),
         array(
-            'id' => 'kuara',
+            'benefit_id' => 'kuara',
             'product' => __( 'Kuara', 'quantia-hub' ),
             'title' => __( 'Transfiere a otros bancos al instante', 'quantia-hub' ),
             'stat' => '24/7',
@@ -128,10 +128,10 @@ function quantia_fallback_benefits(): array {
             'link' => array( 'label' => __( 'Preguntas sobre Kuara', 'quantia-hub' ), 'url' => home_url( '/soporte/' ) ),
         ),
         array(
-            'id'      => 'alcancias',
+            'benefit_id' => 'alcancias',
             'product' => __( 'Alcancías', 'quantia-hub' ),
-            'title'   => __( 'Tú decides cuánto ahorrar', 'quantia-hub' ),
-            'stat'    => __( 'A tu ritmo', 'quantia-hub' ),
+            'title' => __( 'Tú decides cuánto ahorrar', 'quantia-hub' ),
+            'stat' => __( 'A tu ritmo', 'quantia-hub' ),
             'stat_prefix' => '',
             'stat_suffix' => __( 'crear alcancías', 'quantia-hub' ),
             'description' => __( 'Crea alcancías META con fecha y monto objetivo, o LIBRE para ahorrar a tu ritmo. Programa aportes automáticos y mira tu avance.', 'quantia-hub' ),
@@ -145,7 +145,7 @@ function quantia_fallback_benefits(): array {
             'link' => array( 'label' => __( 'Conoce Alcancías', 'quantia-hub' ), 'url' => home_url( '/productos/alcancias/' ) ),
         ),
         array(
-            'id' => 'tarjeta',
+            'benefit_id' => 'tarjeta',
             'product' => __( 'Tarjeta Visa Débito', 'quantia-hub' ),
             'title' => __( 'Paga y retira con tu Visa Débito', 'quantia-hub' ),
             'stat' => '3,000',
@@ -167,17 +167,17 @@ function quantia_fallback_benefits(): array {
 function quantia_fallback_funds( string $plan ): array {
     if ( 'inversion' === $plan ) {
         return array(
-            array( 'name' => 'MMG Systematic Equity',      'swatch' => 'bg-ink',    'asset' => 'Renta variable' ),
-            array( 'name' => 'MMG Global Allocation Fund', 'swatch' => 'bg-qh-300', 'asset' => 'Renta variable' ),
-            array( 'name' => 'MMG Panama Allocation Fund', 'swatch' => 'bg-qh',     'asset' => 'Renta variable' ),
-            array( 'name' => 'MMG Fixed Income Fund',      'swatch' => 'bg-qh-700', 'asset' => 'Renta fija' ),
+            array( 'name' => 'MMG Renta Variable Sistemática',   'swatch' => 'bg-ink',    'asset' => 'Renta variable' ),
+            array( 'name' => 'MMG Fondo de Asignación Global',   'swatch' => 'bg-qh-300', 'asset' => 'Renta variable' ),
+            array( 'name' => 'MMG Fondo de Asignación Panamá',   'swatch' => 'bg-qh',     'asset' => 'Renta variable' ),
+            array( 'name' => 'MMG Fondo de Renta Fija',          'swatch' => 'bg-qh-700', 'asset' => 'Renta fija' ),
         );
     }
     return array(
-        array( 'name' => 'Quantia Core',         'swatch' => 'bg-qh-300', 'asset' => 'Plan de jubilación' ),
-        array( 'name' => 'Quantia Growth',       'swatch' => 'bg-qh',     'asset' => 'Plan de jubilación' ),
-        array( 'name' => 'Quantia Fixed Income', 'swatch' => 'bg-qh-700', 'asset' => 'Plan de jubilación' ),
-        array( 'name' => 'Quantia Select',       'swatch' => 'bg-ink',    'asset' => 'Plan de jubilación' ),
+        array( 'name' => 'Quantia Núcleo',       'swatch' => 'bg-qh-300', 'asset' => 'Plan de jubilación' ),
+        array( 'name' => 'Quantia Crecimiento',  'swatch' => 'bg-qh',     'asset' => 'Plan de jubilación' ),
+        array( 'name' => 'Quantia Renta Fija',   'swatch' => 'bg-qh-700', 'asset' => 'Plan de jubilación' ),
+        array( 'name' => 'Quantia Selecto',      'swatch' => 'bg-ink',    'asset' => 'Plan de jubilación' ),
     );
 }
 
@@ -337,7 +337,11 @@ function quantia_fallback_fee_schedules(): array {
                     'id'    => 'cuenta',
                     'title' => __( 'Cuenta Corriente', 'quantia-hub' ),
                     'rows'  => array(
-                        array( 'concept' => __( 'Interés sobre saldo promedio mensual', 'quantia-hub' ),              'cost' => __( '4% anual', 'quantia-hub' ), 'note' => __( 'Desde B/. 0.01 hasta B/. 50,000.00', 'quantia-hub' ) ),
+                        array( 
+                            'concept' => __( 'Interés sobre saldo promedio mensual', 'quantia-hub' ),
+                            'cost'    => sprintf( __( '%s anual', 'quantia-hub' ), quantia_savings_rate_label() ),
+                            'note'    => __( 'Desde B/. 0.01 hasta B/. 50,000.00', 'quantia-hub' ),
+                        ),
                         array( 'concept' => __( 'Anualidad por el servicio de transferencias ACH', 'quantia-hub' ),    'cost' => 'B/. 10.70' ),
                         array( 'concept' => __( 'Transacción ACH débito rechazada por fondos insuficientes', 'quantia-hub' ), 'cost' => 'B/. 5.35' ),
                     ),
@@ -354,14 +358,14 @@ function quantia_fallback_fee_schedules(): array {
                         array( 'concept' => __( 'Emisión de tarjeta débito', 'quantia-hub' ),                                                    'cost' => 'B/. 21.40' ),
                         array( 'concept' => __( 'Membresía anual de la tarjeta débito', 'quantia-hub' ),                                          'cost' => 'B/. 21.40' ),
                         array( 'concept' => __( 'Reposición de tarjeta débito', 'quantia-hub' ),                                                  'cost' => 'B/. 26.75' ),
-                        array( 'concept' => __( 'Reimpresión de PIN', 'quantia-hub' ),                                                            'cost' => 'B/. 5.35' ),
-                        array( 'concept' => __( 'Consultas y transacciones en ATM de la red CLAVE', 'quantia-hub' ),                              'cost' => 'B/. 1.07' ),
-                        array( 'concept' => __( 'Consultas y transacciones en ATM fuera de la red CLAVE', 'quantia-hub' ),                        'cost' => __( '3.21% + ITBMS', 'quantia-hub' ), 'note' => __( 'Del monto a retirar, mínimo B/. 7.49', 'quantia-hub' ) ),
+                        array( 'concept' => __( 'Reimpresión de clave', 'quantia-hub' ),                                                          'cost' => 'B/. 5.35' ),
+                        array( 'concept' => __( 'Consultas y transacciones en cajeros automáticos de la red CLAVE', 'quantia-hub' ),              'cost' => 'B/. 1.07' ),
+                        array( 'concept' => __( 'Consultas y transacciones en cajeros automáticos fuera de la red CLAVE', 'quantia-hub' ),        'cost' => __( '3.21% + ITBMS', 'quantia-hub' ), 'note' => __( 'Del monto a retirar, mínimo B/. 7.49', 'quantia-hub' ) ),
                         array( 'concept' => __( 'Seguro de fraude Visa Débito', 'quantia-hub' ),                                                  'cost' => 'B/. 1.05', 'note' => __( 'Máx. B/. 3,000 por evento. Deducible B/. 50.00', 'quantia-hub' ) ),
                         array( 'concept' => __( 'Cargo por reclamo Visa Débito', 'quantia-hub' ),                                                 'cost' => 'B/. 21.40' ),
-                        array( 'concept' => __( 'Envío de tarjeta y PIN en Panamá Centro', 'quantia-hub' ),                                       'cost' => __( 'Sin costo', 'quantia-hub' ) ),
-                        array( 'concept' => __( 'Envío de tarjeta y PIN en otras áreas de Panamá y provincias', 'quantia-hub' ),                  'cost' => __( 'Según destino + ITBMS', 'quantia-hub' ), 'note' => __( 'Mínimo B/. 6.42', 'quantia-hub' ) ),
-                        array( 'concept' => __( 'Envío de tarjeta por Courier', 'quantia-hub' ),                                                  'cost' => 'B/. 53.50' ),
+                        array( 'concept' => __( 'Envío de tarjeta y clave en Panamá Centro', 'quantia-hub' ),                                     'cost' => __( 'Sin costo', 'quantia-hub' ) ),
+                        array( 'concept' => __( 'Envío de tarjeta y clave en otras áreas de Panamá y provincias', 'quantia-hub' ),                'cost' => __( 'Según destino + ITBMS', 'quantia-hub' ), 'note' => __( 'Mínimo B/. 6.42', 'quantia-hub' ) ),
+                        array( 'concept' => __( 'Envío de tarjeta por mensajería exprés', 'quantia-hub' ),                                        'cost' => 'B/. 53.50' ),
                         array( 'concept' => __( 'Servicio de mensajería en Panamá Centro', 'quantia-hub' ),                                       'cost' => __( 'Sin costo', 'quantia-hub' ) ),
                     ),
                 ),
@@ -395,14 +399,14 @@ function quantia_fallback_fee_schedules(): array {
                         array( 'concept' => __( 'Emisión de tarjeta débito', 'quantia-hub' ),                                                    'cost' => __( 'Sin costo', 'quantia-hub' ) ),
                         array( 'concept' => __( 'Membresía anual de la tarjeta débito', 'quantia-hub' ),                                          'cost' => __( 'Sin costo', 'quantia-hub' ) ),
                         array( 'concept' => __( 'Reposición de tarjeta débito', 'quantia-hub' ),                                                  'cost' => 'B/. 16.05' ),
-                        array( 'concept' => __( 'Reimpresión de PIN', 'quantia-hub' ),                                                            'cost' => 'B/. 3.21' ),
-                        array( 'concept' => __( 'Consultas y transacciones en ATM de la red CLAVE', 'quantia-hub' ),                              'cost' => 'B/. 0.00', 'note' => __( 'Máx. 8 transacciones al mes, luego B/. 1.07 c/u', 'quantia-hub' ) ),
-                        array( 'concept' => __( 'Consultas y transacciones en ATM fuera de la red CLAVE', 'quantia-hub' ),                        'cost' => __( '3.21% + ITBMS', 'quantia-hub' ), 'note' => __( 'Del monto a retirar, mínimo B/. 7.49', 'quantia-hub' ) ),
+                        array( 'concept' => __( 'Reimpresión de clave', 'quantia-hub' ),                                                          'cost' => 'B/. 3.21' ),
+                        array( 'concept' => __( 'Consultas y transacciones en cajeros automáticos de la red CLAVE', 'quantia-hub' ),              'cost' => 'B/. 0.00', 'note' => __( 'Máx. 8 transacciones al mes, luego B/. 1.07 c/u', 'quantia-hub' ) ),
+                        array( 'concept' => __( 'Consultas y transacciones en cajeros automáticos fuera de la red CLAVE', 'quantia-hub' ),        'cost' => __( '3.21% + ITBMS', 'quantia-hub' ), 'note' => __( 'Del monto a retirar, mínimo B/. 7.49', 'quantia-hub' ) ),
                         array( 'concept' => __( 'Seguro de fraude Visa Débito', 'quantia-hub' ),                                                  'cost' => 'B/. 1.05', 'note' => __( 'Máx. B/. 3,000 por evento. Deducible B/. 50.00', 'quantia-hub' ) ),
                         array( 'concept' => __( 'Cargo por reclamo Visa Débito', 'quantia-hub' ),                                                 'cost' => 'B/. 21.40' ),
-                        array( 'concept' => __( 'Envío de tarjeta y PIN en Panamá Centro', 'quantia-hub' ),                                       'cost' => __( 'Sin costo', 'quantia-hub' ) ),
-                        array( 'concept' => __( 'Envío de tarjeta y PIN en otras áreas de Panamá y provincias', 'quantia-hub' ),                  'cost' => __( 'Sin costo', 'quantia-hub' ) ),
-                        array( 'concept' => __( 'Envío de tarjeta por Courier', 'quantia-hub' ),                                                  'cost' => 'B/. 53.50' ),
+                        array( 'concept' => __( 'Envío de tarjeta y clave en Panamá Centro', 'quantia-hub' ),                                     'cost' => __( 'Sin costo', 'quantia-hub' ) ),
+                        array( 'concept' => __( 'Envío de tarjeta y clave en otras áreas de Panamá y provincias', 'quantia-hub' ),                'cost' => __( 'Sin costo', 'quantia-hub' ) ),
+                        array( 'concept' => __( 'Envío de tarjeta por mensajería exprés', 'quantia-hub' ),                                        'cost' => 'B/. 53.50' ),
                         array( 'concept' => __( 'Servicio de mensajería en Panamá Centro', 'quantia-hub' ),                                       'cost' => __( 'Sin costo', 'quantia-hub' ) ),
                     ),
                 ),
@@ -413,7 +417,6 @@ function quantia_fallback_fee_schedules(): array {
 
 function quantia_is_free( string $cost ): bool {
     return __( 'Sin costo', 'quantia-hub' ) === $cost
-        || __( 'No cost', 'quantia-hub' ) === $cost
         || 0 === strpos( $cost, 'B/. 0.00' );
 }
 
@@ -476,7 +479,7 @@ function quantia_fallback_products(): array {
                 array( 'title' => __( 'Pasajero', 'quantia-hub' ),        'description' => __( 'Renta fija 33.33% y renta variable 66.67%. Más estabilidad, menos variación.', 'quantia-hub' ) ),
                 array( 'title' => __( 'Navegante', 'quantia-hub' ),       'description' => __( 'Renta fija 25% y renta variable 75%. Equilibrio entre estabilidad y crecimiento.', 'quantia-hub' ) ),
                 array( 'title' => __( 'Aventurero', 'quantia-hub' ),      'description' => __( 'Renta variable 100%. Mayor crecimiento potencial para horizontes largos.', 'quantia-hub' ) ),
-                array( 'title' => __( 'Fondos disponibles', 'quantia-hub' ), 'description' => __( 'MMG Systematic Equity, MMG Global Allocation Fund, MMG Panama Allocation Fund y MMG Fixed Income Fund.', 'quantia-hub' ) ),
+                array( 'title' => __( 'Fondos disponibles', 'quantia-hub' ), 'description' => __( 'MMG Renta Variable Sistemática, MMG Fondo de Asignación Global, MMG Fondo de Asignación Panamá y MMG Fondo de Renta Fija.', 'quantia-hub' ) ),
             ),
             'features'         => array(
                 array( 'title' => __( 'Cuestionario de perfil de riesgo', 'quantia-hub' ), 'description' => __( 'Define tu tolerancia al riesgo antes de invertir, directamente en la app.', 'quantia-hub' ) ),
@@ -545,7 +548,7 @@ function quantia_fallback_products(): array {
             ),
             'fees'             => array(
                 array( 'concept' => __( 'Creación de alcancías', 'quantia-hub' ), 'cost' => __( 'Sin costo', 'quantia-hub' ) ),
-                array( 'concept' => __( 'Aportes y jubilacións', 'quantia-hub' ),     'cost' => __( 'Sin costo', 'quantia-hub' ), 'note' => __( 'Sin penalización ni plazos forzosos', 'quantia-hub' ) ),
+                array( 'concept' => __( 'Aportes y retiros', 'quantia-hub' ),     'cost' => __( 'Sin costo', 'quantia-hub' ), 'note' => __( 'Sin penalización ni plazos forzosos', 'quantia-hub' ) ),
                 array( 'concept' => __( 'Interés sobre saldo promedio mensual', 'quantia-hub' ), 'cost' => __( '4% anual', 'quantia-hub' ), 'note' => __( 'Desde B/. 0.01 hasta B/. 50,000.00. Tasa sujeta a cambios', 'quantia-hub' ) ),
             ),
             'faqs'             => array(
@@ -638,7 +641,7 @@ function quantia_fallback_products(): array {
             'options_intro'    => __( 'Lo que obtienes al usar tu Visa Débito Quantia.', 'quantia-hub' ),
             'options'          => array(
                 array( 'title' => __( 'Aceptación Visa', 'quantia-hub' ),      'description' => __( 'Paga en comercios físicos y digitales que aceptan Visa, en Panamá y fuera.', 'quantia-hub' ) ),
-                array( 'title' => __( 'Jubilacións en cajeros', 'quantia-hub' ),   'description' => __( 'Retira efectivo en la red de cajeros disponible en el país.', 'quantia-hub' ) ),
+                array( 'title' => __( 'Retiros en cajeros', 'quantia-hub' ),   'description' => __( 'Retira efectivo en la red de cajeros disponible en el país.', 'quantia-hub' ) ),
                 array( 'title' => __( 'Control desde la app', 'quantia-hub' ), 'description' => __( 'Consulta movimientos y bloquea o desbloquea tu tarjeta cuando lo necesites.', 'quantia-hub' ) ),
                 array( 'title' => __( 'Seguro antifraude', 'quantia-hub' ),    'description' => __( 'Cobertura ante uso no autorizado conforme a las condiciones del producto.', 'quantia-hub' ) ),
             ),
@@ -657,14 +660,14 @@ function quantia_fallback_products(): array {
                 array( 'concept' => __( 'Emisión de tarjeta débito', 'quantia-hub' ),                                                   'cost' => 'B/. 21.40', 'note' => __( 'Sin costo en cuentas de planilla', 'quantia-hub' ) ),
                 array( 'concept' => __( 'Membresía anual', 'quantia-hub' ),                                                             'cost' => 'B/. 21.40', 'note' => __( 'Sin costo en cuentas de planilla', 'quantia-hub' ) ),
                 array( 'concept' => __( 'Reposición de tarjeta débito', 'quantia-hub' ),                                                'cost' => 'B/. 26.75' ),
-                array( 'concept' => __( 'Consultas y transacciones en ATM de la red CLAVE', 'quantia-hub' ),                            'cost' => 'B/. 1.07' ),
+                array( 'concept' => __( 'Consultas y transacciones en cajeros automáticos de la red CLAVE', 'quantia-hub' ),              'cost' => 'B/. 1.07' ),
                 array( 'concept' => __( 'Seguro de fraude', 'quantia-hub' ),                                                            'cost' => 'B/. 1.05', 'note' => __( 'Máx. B/. 3,000 por evento. Deducible B/. 50.00', 'quantia-hub' ) ),
-                array( 'concept' => __( 'Envío de tarjeta y PIN en Panamá Centro', 'quantia-hub' ),                                    'cost' => __( 'Sin costo', 'quantia-hub' ) ),
+                array( 'concept' => __( 'Envío de tarjeta y clave en Panamá Centro', 'quantia-hub' ),                                    'cost' => __( 'Sin costo', 'quantia-hub' ) ),
             ),
             'faqs'             => array(
                 array( 'question' => __( '¿Cómo solicito la tarjeta Visa Débito?', 'quantia-hub' ),                'answer' => __( 'Puedes solicitarla al abrir tu cuenta por correo electrónico o WhatsApp.', 'quantia-hub' ) ),
                 array( 'question' => __( '¿Cómo vinculo y activo mi tarjeta?', 'quantia-hub' ),                    'answer' => __( 'Ingresa a la app, en la opción de tarjeta, selecciona la opción para vincular tarjeta, sigue los pasos y tu tarjeta quedará activa para usarla de inmediato.', 'quantia-hub' ) ),
-                array( 'question' => __( '¿Puedo tener tarjetas digitales o usarlas en Wallet?', 'quantia-hub' ),   'answer' => __( 'Próximamente estaremos brindando nuevas opciones para tu tarjeta.', 'quantia-hub' ) ),
+                array( 'question' => __( '¿Puedo tener tarjetas digitales o usarlas en billetera digital?', 'quantia-hub' ),   'answer' => __( 'Próximamente estaremos brindando nuevas opciones para tu tarjeta.', 'quantia-hub' ) ),
                 array( 'question' => __( '¿Por qué algunas transacciones aparecen en tránsito?', 'quantia-hub' ),   'answer' => __( 'Las transacciones pueden aparecer en tránsito mientras se procesan. Una vez completadas, se reflejarán en tu historial de movimientos.', 'quantia-hub' ) ),
                 array( 'question' => __( '¿Cómo bloqueo mi tarjeta?', 'quantia-hub' ),                             'answer' => __( 'Puedes bloquear tu tarjeta desde la app o contactando al área de atención al cliente. En caso de fraude, también puedes solicitar el bloqueo inmediato en la app.', 'quantia-hub' ) ),
             ),
@@ -729,14 +732,14 @@ function quantia_fallback_retirement_profiles(): array {
 
 function quantia_fallback_fund_lookup(): array {
     return array(
-        'systematic-equity'    => array( 'id' => 'systematic-equity',    'name' => 'MMG Systematic Equity',      'asset_class' => 'Renta variable', 'swatch' => 'bg-ink' ),
-        'global-allocation'    => array( 'id' => 'global-allocation',    'name' => 'MMG Global Allocation Fund', 'asset_class' => 'Renta variable', 'swatch' => 'bg-qh-300' ),
-        'panama-allocation'    => array( 'id' => 'panama-allocation',    'name' => 'MMG Panama Allocation Fund', 'asset_class' => 'Renta variable', 'swatch' => 'bg-qh' ),
-        'fixed-income'         => array( 'id' => 'fixed-income',         'name' => 'MMG Fixed Income Fund',      'asset_class' => 'Renta fija',     'swatch' => 'bg-qh-700' ),
-        'quantia-core'         => array( 'id' => 'quantia-core',         'name' => 'Quantia Core',               'asset_class' => 'Individual',     'swatch' => 'bg-qh-300' ),
-        'quantia-growth'       => array( 'id' => 'quantia-growth',       'name' => 'Quantia Growth',             'asset_class' => 'Individual',     'swatch' => 'bg-qh' ),
-        'quantia-fixed-income' => array( 'id' => 'quantia-fixed-income', 'name' => 'Quantia Fixed Income',       'asset_class' => 'Individual',     'swatch' => 'bg-qh-700' ),
-        'quantia-select'       => array( 'id' => 'quantia-select',       'name' => 'Quantia Select',             'asset_class' => 'Individual',     'swatch' => 'bg-ink' ),
+        'systematic-equity'    => array( 'id' => 'systematic-equity',    'name' => 'MMG Renta Variable Sistemática',   'asset_class' => 'Renta variable', 'swatch' => 'bg-ink' ),
+        'global-allocation'    => array( 'id' => 'global-allocation',    'name' => 'MMG Fondo de Asignación Global',   'asset_class' => 'Renta variable', 'swatch' => 'bg-qh-300' ),
+        'panama-allocation'    => array( 'id' => 'panama-allocation',    'name' => 'MMG Fondo de Asignación Panamá',   'asset_class' => 'Renta variable', 'swatch' => 'bg-qh' ),
+        'fixed-income'         => array( 'id' => 'fixed-income',         'name' => 'MMG Fondo de Renta Fija',          'asset_class' => 'Renta fija',     'swatch' => 'bg-qh-700' ),
+        'quantia-core'         => array( 'id' => 'quantia-core',         'name' => 'Quantia Núcleo',                   'asset_class' => 'Individual',     'swatch' => 'bg-qh-300' ),
+        'quantia-growth'       => array( 'id' => 'quantia-growth',       'name' => 'Quantia Crecimiento',              'asset_class' => 'Individual',     'swatch' => 'bg-qh' ),
+        'quantia-fixed-income' => array( 'id' => 'quantia-fixed-income', 'name' => 'Quantia Renta Fija',               'asset_class' => 'Individual',     'swatch' => 'bg-qh-700' ),
+        'quantia-select'       => array( 'id' => 'quantia-select',       'name' => 'Quantia Selecto',                  'asset_class' => 'Individual',     'swatch' => 'bg-ink' ),
     );
 }
 

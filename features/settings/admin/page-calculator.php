@@ -46,7 +46,7 @@ function quantia_settings_page_calculator(): void {
                             <td><input type="text" name="options[<?php echo (int) $i; ?>][key]" value="<?php echo esc_attr( $opt['key'] ?? '' ); ?>" style="width:100%"></td>
                             <td><input type="text" name="options[<?php echo (int) $i; ?>][name]" value="<?php echo esc_attr( $opt['name'] ?? '' ); ?>" style="width:100%"></td>
                             <td><input type="text" name="options[<?php echo (int) $i; ?>][kind]" value="<?php echo esc_attr( $opt['kind'] ?? '' ); ?>" style="width:100%"></td>
-                            <td><input type="number" step="0.0001" min="0" max="1" name="options[<?php echo (int) $i; ?>][rate]" value="<?php echo esc_attr( $opt['rate'] ?? 0 ); ?>" style="width:100%"></td>
+                            <td><input type="number" step="any" inputmode="decimal" min="0" max="1" name="options[<?php echo (int) $i; ?>][rate]" value="<?php echo esc_attr( $opt['rate'] ?? 0 ); ?>" style="width:100%"></td>
                             <td><button type="button" class="button quantia-remove-row">×</button></td>
                         </tr>
                     <?php endforeach; ?>
@@ -63,15 +63,22 @@ function quantia_settings_page_calculator(): void {
                 </tr>
                 <tr>
                     <th><label for="default_initial"><?php esc_html_e( 'Default initial amount', 'quantia-hub' ); ?></label></th>
-                    <td><input type="number" id="default_initial" name="default_initial" value="<?php echo (int) ( $section['default_initial'] ?? 500 ); ?>" class="small-text"></td>
+                    <td><input type="number" step="any" inputmode="decimal" id="default_initial" name="default_initial" value="<?php echo (float) ( $section['default_initial'] ?? 500 ); ?>" class="small-text"></td>
                 </tr>
                 <tr>
                     <th><label for="default_monthly"><?php esc_html_e( 'Default monthly contribution', 'quantia-hub' ); ?></label></th>
-                    <td><input type="number" id="default_monthly" name="default_monthly" value="<?php echo (int) ( $section['default_monthly'] ?? 100 ); ?>" class="small-text"></td>
+                    <td><input type="number" step="any" inputmode="decimal" id="default_monthly" name="default_monthly" value="<?php echo (float) ( $section['default_monthly'] ?? 100 ); ?>" class="small-text"></td>
                 </tr>
                 <tr>
                     <th><label for="default_years"><?php esc_html_e( 'Default years', 'quantia-hub' ); ?></label></th>
                     <td><input type="number" id="default_years" name="default_years" value="<?php echo (int) ( $section['default_years'] ?? 15 ); ?>" min="1" max="40" class="small-text"></td>
+                </tr>
+                <tr>
+                    <th><label for="disclaimer"><?php esc_html_e( 'Legal Disclaimer Text', 'quantia-hub' ); ?></label></th>
+                    <td>
+                        <textarea id="disclaimer" name="disclaimer" rows="4" class="large-text"><?php echo esc_textarea( $section['disclaimer'] ?? '' ); ?></textarea>
+                        <p class="description"><?php esc_html_e( 'Aparecerá debajo de los resultados de la calculadora.', 'quantia-hub' ); ?></p>
+                    </td>
                 </tr>
             </table>
 
@@ -86,7 +93,7 @@ function quantia_settings_page_calculator(): void {
         row.innerHTML = '<td><input type="text" name="options[' + i + '][key]" style="width:100%"></td>'
             + '<td><input type="text" name="options[' + i + '][name]" style="width:100%"></td>'
             + '<td><input type="text" name="options[' + i + '][kind]" style="width:100%"></td>'
-            + '<td><input type="number" step="0.0001" min="0" max="1" name="options[' + i + '][rate]" value="0" style="width:100%"></td>'
+            + '<td><input type="number" step="any" inputmode="decimal" min="0" max="1" name="options[' + i + '][rate]" value="0" style="width:100%"></td>'
             + '<td><button type="button" class="button quantia-remove-row">×</button></td>';
         tbody.appendChild(row);
     });

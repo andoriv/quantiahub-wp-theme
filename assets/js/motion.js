@@ -586,7 +586,8 @@ function initCompoundCalculator() {
         new Intl.NumberFormat( normalizedLocale, {
             style: 'currency',
             currency: 'USD',
-            maximumFractionDigits: 0,
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
         } ).format( value );
 
     const simulate = ( initial, monthly, months, annualRate ) => {
@@ -601,16 +602,16 @@ function initCompoundCalculator() {
             aportado += monthly;
             points.push( {
                 month: m,
-                aportado: Math.round( aportado ),
-                saldo: Math.round( saldo ),
+                aportado: aportado,
+                saldo: saldo,
             } );
         }
 
         return {
             points,
-            aportado: Math.round( aportado ),
-            rendimiento: Math.round( saldo - aportado ),
-            saldo: Math.round( saldo ),
+            aportado: aportado,
+            rendimiento: saldo - aportado,
+            saldo: saldo,
         };
     };
 
@@ -677,7 +678,7 @@ function initCompoundCalculator() {
 
         const getCheckedRate = () => {
             const checked = rates.find( ( r ) => r.checked );
-            return checked ? parseFloat( checked.dataset.rate || '0.07' ) : 0.07;
+            return checked ? parseFloat( checked.dataset.rate || '0.07' ) : 0.07; 
         };
 
         const syncRateStyles = () => {
@@ -715,7 +716,7 @@ function initCompoundCalculator() {
             const simpleInterest =
                 initial * rate * years +
                 ( monthly * rate * ( months * ( months - 1 ) / 2 ) ) / 12;
-            const simpleTotal = Math.round( sim.aportado + simpleInterest );
+            const simpleTotal = sim.aportado + simpleInterest;
             const advantage   = Math.max( 0, sim.saldo - simpleTotal );
 
             const yearWord = years === 1
@@ -1181,7 +1182,6 @@ function initLegalDocumentAccordion() {
             } );
         }
 
-        // LÓGICA NUEVA: Abrir sección si la URL tiene un hash que coincide
         const hash = window.location.hash;
         if ( hash ) {
             const targetSection = root.querySelector( hash );
@@ -1191,7 +1191,6 @@ function initLegalDocumentAccordion() {
                     applyState( targetSection, true );
                     updateToggleAllLabel();
                     
-                    // Hacemos scroll suave hacia la sección abierta después de un breve delay
                     setTimeout( () => {
                         targetSection.scrollIntoView( { behavior: 'smooth', block: 'start' } );
                     }, 100 );
@@ -1235,14 +1234,11 @@ function initLegalPageNav() {
         } );
     };
 
-    // 1. SISTEMA DE SCROLL SPY (Calcula qué sección está visible)
     const handleScroll = () => {
         let currentSlug = docs[0].id;
         
-        // Buscamos cuál es la sección que está más cerca del top de la pantalla (dejando espacio para el header)
         docs.forEach( ( doc ) => {
             const rect = doc.getBoundingClientRect();
-            // Si la parte superior de la sección está a menos de 150px del top, es la activa
             if ( rect.top <= 150 ) {
                 currentSlug = doc.id;
             }
@@ -1262,10 +1258,8 @@ function initLegalPageNav() {
         }
     } );
     
-    // Ejecutar al cargar para establecer el estado inicial
     handleScroll();
 
-    // 2. SCROLL EXACTO CON OFFSET (Para que el header no tape el título)
     const handleAnchorClick = ( e ) => {
         e.preventDefault();
         const link = e.currentTarget;
@@ -1273,7 +1267,6 @@ function initLegalPageNav() {
         const targetEl = document.getElementById( targetId );
         
         if ( targetEl ) {
-            // Calculamos la altura del header fijo (aprox 100px)
             const headerOffset = 120; 
             const elementPosition = targetEl.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.scrollY - headerOffset;
@@ -1289,7 +1282,6 @@ function initLegalPageNav() {
         link.addEventListener( 'click', handleAnchorClick );
     } );
 
-    // Si entramos desde un enlace externo con ancla
     if ( window.location.hash ) {
         const target = document.querySelector( window.location.hash );
         if ( target ) {
@@ -1303,7 +1295,27 @@ function initLegalPageNav() {
     }
 }
 
-/* ---------- Boot ---------- */
+function initSmartDownloadLinks() {
+    const links = document.querySelectorAll( '[data-smart-download]' );
+    if ( ! links.length ) return;
+
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+    const isAndroid = /android/i.test( userAgent );
+    
+    const isIOS = /iPad|iPhone|iPod/.test( userAgent ) && ! window.MSStream;
+
+    links.forEach( ( link ) => {
+        if ( isAndroid ) {
+            link.href = link.dataset.androidUrl;
+        } else if ( isIOS ) {
+            link.href = link.dataset.iosUrl;
+        } else {
+            link.href = link.dataset.iosUrl;
+        }
+    } );
+}
+
 function boot() {
     initParallax();
     initRevealFrames();
@@ -1327,6 +1339,7 @@ function boot() {
     initFaqTabsCarousel();
     initLegalDocumentAccordion();
     initLegalPageNav();
+    initSmartDownloadLinks();
 }
 
 if ( document.readyState === 'loading' ) {

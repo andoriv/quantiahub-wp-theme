@@ -1,4 +1,15 @@
 <?php
+/**
+ * Sección de la calculadora de interés compuesto.
+ * 
+ * Contexto de Arquitectura:
+ * - Utiliza datos dinámicos de quantia_settings('calculator') y quantia_get_calculator_options().
+ * - El JS (motion.js -> initCompoundCalculator) se encarga de hacer los cálculos en tiempo real.
+ * - El Disclaimer y la tasa de ahorro son 100% configurables desde el admin.
+ *
+ * @package QuantiaHub
+ */
+
 defined( 'ABSPATH' ) || exit;
 
 $rate_options    = quantia_get_calculator_options();
@@ -7,6 +18,30 @@ $default_rate    = $defaults['rate'];
 $default_initial = $defaults['initial'];
 $default_monthly = $defaults['monthly'];
 $default_years   = $defaults['years'];
+
+// 1. Extraemos la tasa de la Alcancía dinámicamente de las opciones
+$savings_rate_pct = '4.0000'; 
+foreach ( $rate_options as $opt ) {
+    if ( isset($opt['key']) && 'alcancia' === $opt['key'] ) {
+        $savings_rate_pct = number_format( (float) $opt['rate'] * 100, 4, '.', '' );
+        break;
+    }
+}
+
+// 2. Extraemos el texto legal configurado en el admin
+$calc_settings = quantia_settings( 'calculator' );
+$disclaimer    = $calc_settings['disclaimer'] ?? '';
+
+if ( empty( $disclaimer ) ) {
+    // Fallback por si no se ha guardado nada aún
+    $disclaimer = sprintf(
+        esc_html__( 'Simulación ilustrativa. La Alcancía usa la tasa de %s%% anual; los perfiles de inversión usan rendimientos estimados que no están garantizados. Los rendimientos pasados no garantizan resultados futuros.', 'quantia-hub' ),
+        $savings_rate_pct
+    );
+} else {
+    // Si el administrador usó "%s" en el texto, lo reemplazamos por la tasa real
+    $disclaimer = str_replace( '%s', $savings_rate_pct . '%', $disclaimer );
+}
 
 $marquee_text = __( 'Interés sobre interés · Tiempo · Constancia · ', 'quantia-hub' );
 $marquee_x3   = trim( str_repeat( $marquee_text, 3 ) );
@@ -112,7 +147,7 @@ $marquee_x3   = trim( str_repeat( $marquee_text, 3 ) );
                                         </span>
                                     </span>
                                     <span class="font-display text-lg font-extrabold">
-                                        <?php echo (int) round( $opt['rate'] * 100 ); ?>%
+                                        <?php echo esc_html( number_format( (float) $opt['rate'] * 100, 2, '.', '' ) ); ?>%
                                     </span>
                                 </label>
                             <?php endforeach; ?>
@@ -125,12 +160,10 @@ $marquee_x3   = trim( str_repeat( $marquee_text, 3 ) );
                         <p class="text-sm font-medium text-white/60">
                             <?php
                             printf(
-                                /* translators: %s: placeholder con el número de años */
                                 esc_html__( 'En %s tendrías', 'quantia-hub' ),
                                 sprintf(
                                     '<span data-compound-years-out>%s</span>',
                                     sprintf(
-                                        /* translators: %d: número de años */
                                         esc_html__( '%d años', 'quantia-hub' ),
                                         (int) $default_years
                                     )
@@ -164,7 +197,6 @@ $marquee_x3   = trim( str_repeat( $marquee_text, 3 ) );
                         <p class="mt-6 rounded-2xl bg-white/[0.06] px-4 py-4 text-sm leading-relaxed text-white/75 sm:px-5">
                             <?php
                             printf(
-                                /* translators: 1: total con interés simple, 2: ventaja del interés compuesto */
                                 esc_html__( 'Con interés simple tendrías %1$s. El interés compuesto te suma %2$s más.', 'quantia-hub' ),
                                 '<strong data-compound-simple class="text-white">US$0</strong>',
                                 '<strong data-compound-advantage class="text-qh-300">US$0</strong>'
@@ -177,7 +209,7 @@ $marquee_x3   = trim( str_repeat( $marquee_text, 3 ) );
 
             <div class="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
                 <p class="max-w-xl text-xs leading-relaxed text-white/45">
-                    <?php esc_html_e( 'Simulación ilustrativa. La Alcancía usa la tasa de 4% anual; los perfiles de inversión usan rendimientos estimados que no están garantizados. Los rendimientos pasados no garantizan resultados futuros.', 'quantia-hub' ); ?>
+                    <?php echo esc_html( $disclaimer ); ?>
                 </p>
                 <a href="<?php echo esc_url( home_url( '/aprende/interes-simple-y-compuesto/' ) ); ?>"
                     class="group inline-flex shrink-0 items-center gap-2 text-sm font-bold text-qh-300 transition-colors hover:text-white">

@@ -23,6 +23,7 @@ function quantia_settings_default( string $key ) {
             'default_initial' => 500,
             'default_monthly' => 100,
             'default_years'   => 15,
+            'disclaimer'      => __( 'Simulación ilustrativa. La Alcancía usa la tasa de 4% anual; los perfiles de inversión usan rendimientos estimados que no están garantizados. Los rendimientos pasados no garantizan resultados futuros.', 'quantia-hub' ),
         ),
         'benefits' => array(
             'rows' => quantia_fallback_benefits(),

@@ -1,4 +1,15 @@
 <?php
+/**
+ * Fila individual de un beneficio/producto.
+ * 
+ * Contexto de Arquitectura:
+ * - Consumido por: account-benefits.php (mediante un bucle foreach).
+ * - Dependencias visuales: Usa quantia_icon() y phone-frame.php.
+ * - Dependencias JS: Utiliza initParallax, initMarquee y data-reveal-frame.
+ *
+ * @package QuantiaHub
+ */
+
 defined( 'ABSPATH' ) || exit;
 
 $b        = $args['benefit'];
@@ -10,7 +21,7 @@ $marquee_text = esc_html( $b['product'] ) . ' ·';
 $marquee_x5   = trim( str_repeat( $marquee_text . ' ', 5 ) );
 ?>
 
-<article id="beneficio-<?php echo esc_attr( $b['id'] ); ?>"
+<article id="beneficio-<?php echo esc_attr( $b['benefit_id'] ); ?>"
     class="grid grid-cols-1 items-center gap-10 border-t border-ink/10 py-14 first:border-t-0 first:pt-6 sm:gap-14 sm:py-20 lg:grid-cols-2 lg:gap-20 lg:py-28">
 
     <div class="<?php echo $reversed ? 'lg:order-last' : ''; ?>">

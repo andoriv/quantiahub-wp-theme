@@ -1,4 +1,15 @@
 <?php
+/**
+ * Sección principal de beneficios y productos en el Home.
+ * 
+ * Contexto de Arquitectura:
+ * - Consume los datos de quantia_get_benefits().
+ * - Itera sobre benefit-row.php para renderizar cada producto.
+ * - Dependencias JS: Utiliza initMarquee y data-parallax.
+ *
+ * @package QuantiaHub
+ */
+
 defined( 'ABSPATH' ) || exit;
 
 $benefits = quantia_get_benefits();
@@ -8,7 +19,6 @@ if ( empty( $benefits ) ) {
 }
 
 $marquee_text = sprintf(
-    /* translators: banda de marquesina con beneficios de productos */
     __( '%1$s · %2$s · %3$s · %4$s · %5$s · %6$s · ', 'quantia-hub' ),
     __( '4% anual', 'quantia-hub' ),
     __( 'Kuara 24/7', 'quantia-hub' ),
@@ -42,7 +52,7 @@ $marquee_x3 = trim( str_repeat( $marquee_text, 3 ) );
 
         <nav aria-label="<?php esc_attr_e( 'Ir a un producto', 'quantia-hub' ); ?>" class="mt-10 flex flex-wrap gap-2">
             <?php foreach ( $benefits as $b ) : ?>
-                <a href="#beneficio-<?php echo esc_attr( $b['id'] ); ?>"
+                <a href="#beneficio-<?php echo esc_attr( $b['benefit_id'] ); ?>"
                     class="whitespace-nowrap rounded-full bg-mist px-4 py-2 text-sm font-semibold text-ink/65 transition-colors hover:bg-qh-100 hover:text-ink">
                     <?php echo esc_html( $b['product'] ); ?>
                 </a>
