@@ -3,8 +3,8 @@
  * Valores de respaldo del contenido de marketing del tema.
  *
  * Los textos están directamente en español. El archivo .mo de inglés actúa
- * como diccionario de traducción. El frontend resuelve la cadena final según
- * el locale que determina el helper de detección de idioma.
+ * como diccionario de traducción. La interfaz resuelve la cadena final según
+ * el idioma que determina la función auxiliar de detección de idioma.
  *
  * @package QuantiaHub
  */
@@ -204,16 +204,25 @@ function quantia_fallback_onboarding_steps(): array {
             'id'          => 'descarga',
             'title'       => __( 'Descarga Quantia Hub', 'quantia-hub' ),
             'description' => __( 'Disponible en iOS y Android, sin costo de apertura ni saldo mínimo.', 'quantia-hub' ),
+            'visual'      => 'app',
         ),
         array(
             'id'          => 'verifica',
             'title'       => __( 'Verifica tu identidad', 'quantia-hub' ),
             'description' => __( 'Toma una foto de tu documento y una selfie para validar tu identidad.', 'quantia-hub' ),
+            'visual'      => 'id',
+        ),
+        array(
+            'id'          => 'fondea',
+            'title'       => __( 'Fondea tu cuenta', 'quantia-hub' ),
+            'description' => __( 'Transfiere desde tu banco actual vía ACH o al instante con Kuara al número de cuenta asignado, o desde tu billetera digital.', 'quantia-hub' ),
+            'visual'      => 'fondeo',
         ),
         array(
             'id'          => 'activa',
             'title'       => __( 'Activa tus productos', 'quantia-hub' ),
-            'description' => __( 'Crea tu primera alcancía, solicita tu tarjeta o define tu perfil de inversión.', 'quantia-hub' ),
+            'description' => __( 'Con tu saldo listo, crea tu primera alcancía, solicita tu tarjeta o empieza a invertir.', 'quantia-hub' ),
+            'visual'      => 'productos',
         ),
     );
 }
@@ -811,5 +820,32 @@ function quantia_fallback_regulators(): array {
             'short'       => 'Latinex',
             'description' => __( 'Bolsa de valores en la que participa MMG Bank.', 'quantia-hub' ),
         ),
+    );
+}
+
+function quantia_fallback_trust_bank(): array {
+    return array(
+        'heading'    => __( 'Detrás de la app hay un banco real: MMG Bank, banca de inversión con trayectoria en Panamá.', 'quantia-hub' ),
+        'image'      => home_url( '/wp-content/uploads/2026/11/MMG.webp' ),
+        'image_alt'  => __( 'Equipo de Quantia Hub trabajando en sus oficinas en Ciudad de Panamá', 'quantia-hub' ),
+        'badge_kicker' => __( 'Una solución de', 'quantia-hub' ),
+        'badge_name'   => __( 'MMG Bank Corporation', 'quantia-hub' ),
+        'items'      => array(
+            array(
+                'title' => __( 'Respaldo de MMG Bank', 'quantia-hub' ),
+                'text'  => __( 'Quantia es la aplicación financiera de MMG Bank Corporation, banca de inversión con trayectoria en Panamá.', 'quantia-hub' ),
+            ),
+            array(
+                'title' => __( 'Entidades reguladas', 'quantia-hub' ),
+                'text'  => __( 'Operamos bajo la supervisión de la Superintendencia de Bancos de Panamá y la Superintendencia del Mercado de Valores.', 'quantia-hub' ),
+            ),
+            array(
+                'title' => __( 'Tu información protegida', 'quantia-hub' ),
+                'text'  => __( 'Tratamos tus datos conforme a la normativa panameña de protección de datos personales.', 'quantia-hub' ),
+            ),
+        ),
+        'cta_label'  => __( 'Conoce más sobre nosotros', 'quantia-hub' ),
+        'cta_url'    => '/nosotros',
+        'regulators' => __( 'Regulado por Superintendencia de Bancos de Panamá · Superintendencia del Mercado de Valores · Latinex', 'quantia-hub' ),
     );
 }

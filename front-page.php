@@ -1,4 +1,14 @@
 <?php
+/**
+ * Plantilla de la página de inicio (Home).
+ *
+ * Contexto de Arquitectura:
+ * - Es el orquestador principal que define el orden de los bloques en la portada.
+ * - Consume los módulos de template-parts/home/.
+ *
+ * @package QuantiaHub
+ */
+
 defined( 'ABSPATH' ) || exit;
 
 get_header();
@@ -12,6 +22,7 @@ if ( quantia_option( 'home_show_simulator', false ) ) {
 
 get_template_part( 'template-parts/home/compound-calculator' );
 get_template_part( 'template-parts/home/about-summary' );
+get_template_part( 'template-parts/home/trust-bank' );
 get_template_part( 'template-parts/home/demo-section' );
 get_template_part( 'template-parts/home/steps' );
 get_template_part( 'template-parts/home/testimonials' );
