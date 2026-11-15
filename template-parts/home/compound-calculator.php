@@ -19,27 +19,23 @@ $default_initial = $defaults['initial'];
 $default_monthly = $defaults['monthly'];
 $default_years   = $defaults['years'];
 
-// 1. Extraemos la tasa de la Alcancía dinámicamente de las opciones
 $savings_rate_pct = '4.0000'; 
 foreach ( $rate_options as $opt ) {
     if ( isset($opt['key']) && 'alcancia' === $opt['key'] ) {
-        $savings_rate_pct = number_format( (float) $opt['rate'] * 100, 4, '.', '' );
+        $savings_rate_pct = number_format( (float) $opt['rate'] * 100, 2, '.', '' );
         break;
     }
 }
 
-// 2. Extraemos el texto legal configurado en el admin
 $calc_settings = quantia_settings( 'calculator' );
 $disclaimer    = $calc_settings['disclaimer'] ?? '';
 
 if ( empty( $disclaimer ) ) {
-    // Fallback por si no se ha guardado nada aún
     $disclaimer = sprintf(
         esc_html__( 'Simulación ilustrativa. La Alcancía usa la tasa de %s%% anual; los perfiles de inversión usan rendimientos estimados que no están garantizados. Los rendimientos pasados no garantizan resultados futuros.', 'quantia-hub' ),
         $savings_rate_pct
     );
 } else {
-    // Si el administrador usó "%s" en el texto, lo reemplazamos por la tasa real
     $disclaimer = str_replace( '%s', $savings_rate_pct . '%', $disclaimer );
 }
 
@@ -105,7 +101,6 @@ $marquee_x3   = trim( str_repeat( $marquee_text, 3 ) );
                             <output htmlfor="cc-years" data-compound-years-out class="font-display text-2xl font-extrabold tracking-[-0.02em]">
                                 <?php
                                 printf(
-                                    /* translators: %d: número de años */
                                     esc_html__( '%d años', 'quantia-hub' ),
                                     (int) $default_years
                                 );

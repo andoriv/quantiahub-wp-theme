@@ -52,7 +52,6 @@ $marquee_x3 = trim( str_repeat( $marquee_text, 3 ) );
 
         <nav aria-label="<?php esc_attr_e( 'Ir a un producto', 'quantia-hub' ); ?>" class="mt-10 flex flex-wrap gap-2">
             <?php foreach ( $benefits as $b ) : 
-                // SOLUCIÓN: Acepta 'benefit_id' o el viejo 'id' para evitar errores
                 $b_id = $b['benefit_id'] ?? $b['id'] ?? '';
             ?>
                 <a href="#beneficio-<?php echo esc_attr( $b_id ); ?>"

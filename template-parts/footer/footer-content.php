@@ -1,209 +1,162 @@
 <?php
 /**
- * Footer, cuatro columnas.
+ * Contenido del Footer principal.
+ * 
+ * Contexto de Arquitectura:
+ * - Incluido por: footer.php.
+ * - Contiene la navegación secundaria, redes sociales, reguladores y legales.
+ * - Dependencias visuales: quantia_icon() para SVGs.
  *
  * @package QuantiaHub
  */
 
 defined( 'ABSPATH' ) || exit;
-
-$product_nav = quantia_get_product_nav();
-$contact     = array(
-    'whatsapp_number' => quantia_option( 'contact_whatsapp_number', '+507 6477-7460' ),
-    'whatsapp_url'    => quantia_option( 'contact_whatsapp_url', 'https://wa.me/50764777460' ),
-    'phone'           => quantia_option( 'contact_phone', '+507 208-7024' ),
-    'phone_url'       => quantia_option( 'contact_phone_url', 'tel:+5072087024' ),
-    'email'           => quantia_option( 'contact_email', 'quantia@mmgbank.com' ),
-    'email_url'       => quantia_option( 'contact_email_url', 'mailto:quantia@mmgbank.com' ),
-    'claims_url'      => quantia_option( 'contact_claims_url', 'mailto:reclamos@mmgbank.com' ),
-);
-
-$site_links = array(
-    array( 'label' => __( 'Tarifas', 'quantia-hub' ),  'url' => home_url( '/tarifas/' ) ),
-    array( 'label' => __( 'Aprende', 'quantia-hub' ),  'url' => home_url( '/aprende/' ) ),
-    array( 'label' => __( 'Soporte', 'quantia-hub' ),  'url' => home_url( '/soporte/' ) ),
-    array( 'label' => __( 'Nosotros', 'quantia-hub' ), 'url' => home_url( '/nosotros/' ) ),
-);
-
-$legal_docs = get_posts(
-    array(
-        'post_type'      => 'documento_legal',
-        'posts_per_page' => 8,
-        'orderby'        => 'menu_order',
-        'order'          => 'ASC',
-    )
-);
-
-$regulators = quantia_option_rows( 'regulators' );
-if ( empty( $regulators ) ) {
-    $regulators = array(
-        array( 'name' => 'Superintendencia de Bancos de Panamá',    'short' => 'SBP' ),
-        array( 'name' => 'Superintendencia del Mercado de Valores', 'short' => 'SMV' ),
-        array( 'name' => 'Latinex',                                 'short' => 'Latinex' ),
-    );
-}
-
-$full_brand = quantia_option( 'site_full_brand', 'Quantia Hub' );
-$bank       = quantia_option( 'site_bank', 'MMG Bank Corporation' );
-$bank_url   = quantia_option( 'site_bank_url', 'https://www.mmgbank.com' );
-$market     = quantia_option( 'site_market', 'Panamá' );
-$domain     = quantia_option( 'site_domain', 'quantiahub.com' );
-$site_url   = quantia_option( 'site_url', 'https://quantiahub.com' );
 ?>
 
-<footer class="w-full bg-ink py-14 text-white">
+<!-- Añadimos overflow-hidden para evitar que el scroll horizontal rompa el fondo verde -->
+<footer class="w-full overflow-hidden bg-ink pb-12 pt-20 text-white">
     <div class="mx-auto max-w-6xl px-5 sm:px-6">
 
-        <div class="flex flex-wrap items-center justify-between gap-6 border-b border-white/10 pb-8">
-            <?php get_template_part( 'template-parts/components/logo', null, array(
-                'variant' => 'dark',
-                'height'  => 'h-8',
-            ) ); ?>
-            <div class="flex items-center gap-3">
-                <a href="<?php echo esc_url( $bank_url ); ?>" target="_blank" rel="noopener noreferrer"
-                   aria-label="Instagram"
-                   class="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-qh hover:text-qh-300">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-                </a>
-                <a href="<?php echo esc_url( $bank_url ); ?>" target="_blank" rel="noopener noreferrer"
-                   aria-label="Facebook"
-                   class="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-qh hover:text-qh-300">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                </a>
-                <a href="<?php echo esc_url( $bank_url ); ?>" target="_blank" rel="noopener noreferrer"
-                   aria-label="LinkedIn"
-                   class="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-qh hover:text-qh-300">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-                </a>
-                <a href="<?php echo esc_url( $bank_url ); ?>" target="_blank" rel="noopener noreferrer"
-                   aria-label="YouTube"
-                   class="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-qh hover:text-qh-300">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
-                </a>
-                <a href="#top" aria-label="<?php esc_attr_e( 'Volver arriba', 'quantia-hub' ); ?>"
-                   class="flex h-9 w-9 items-center justify-center rounded-full bg-qh text-white transition-colors hover:bg-qh-600">
-                    <?php echo quantia_icon( 'arrow-up', 'h-4 w-4' ); // phpcs:ignore ?>
-                </a>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-8 py-10 md:grid-cols-4">
-            <div>
-                <h3 class="text-[11px] font-semibold uppercase tracking-widest text-qh-300">
-                    <?php esc_html_e( 'Productos', 'quantia-hub' ); ?>
-                </h3>
-                <ul class="mt-4 space-y-2">
-                    <?php foreach ( $product_nav as $item ) : ?>
-                        <li>
-                            <a href="<?php echo esc_url( $item['url'] ); ?>" class="text-xs text-white/60 transition-colors hover:text-white">
-                                <?php echo esc_html( $item['label'] ); ?>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-[11px] font-semibold uppercase tracking-widest text-qh-300">
-                    <?php esc_html_e( 'Sitio', 'quantia-hub' ); ?>
-                </h3>
-                <ul class="mt-4 space-y-2">
-                    <?php foreach ( $site_links as $item ) : ?>
-                        <li>
-                            <a href="<?php echo esc_url( $item['url'] ); ?>" class="text-xs text-white/60 transition-colors hover:text-white">
-                                <?php echo esc_html( $item['label'] ); ?>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-[11px] font-semibold uppercase tracking-widest text-qh-300">
-                    <?php esc_html_e( 'Regulatorio', 'quantia-hub' ); ?>
-                </h3>
-                <ul class="mt-4 space-y-2">
-                    <li>
-                        <a href="<?php echo esc_url( home_url( '/legal/' ) ); ?>" class="text-xs font-semibold text-white/80 transition-colors hover:text-white">
-                            <?php esc_html_e( 'Centro legal', 'quantia-hub' ); ?>
-                        </a>
-                    </li>
-                    <?php foreach ( $legal_docs as $doc ) : ?>
-                        <li>
-                            <a href="<?php echo esc_url( get_permalink( $doc ) ); ?>" class="text-xs text-white/60 transition-colors hover:text-white">
-                                <?php echo esc_html( get_the_title( $doc ) ); ?>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-[11px] font-semibold uppercase tracking-widest text-qh-300">
-                    <?php esc_html_e( 'Contacto', 'quantia-hub' ); ?>
-                </h3>
-                <ul class="mt-4 space-y-2 text-xs text-white/60">
-                    <li>
-                        <a href="<?php echo esc_url( $contact['whatsapp_url'] ); ?>" target="_blank" rel="noopener noreferrer"
-                           class="inline-flex items-center gap-2 transition-colors hover:text-white">
-                            <?php echo quantia_icon( 'message-circle', 'h-3.5 w-3.5' ); // phpcs:ignore ?>
-                            <?php echo esc_html( $contact['whatsapp_number'] ); ?>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo esc_url( $contact['phone_url'] ); ?>" class="inline-flex items-center gap-2 transition-colors hover:text-white">
-                            <?php echo quantia_icon( 'phone', 'h-3.5 w-3.5' ); // phpcs:ignore ?>
-                            <?php echo esc_html( $contact['phone'] ); ?>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo esc_url( $contact['email_url'] ); ?>" class="inline-flex items-center gap-2 break-all transition-colors hover:text-white">
-                            <?php echo quantia_icon( 'mail', 'h-3.5 w-3.5' ); // phpcs:ignore ?>
-                            <?php echo esc_html( $contact['email'] ); ?>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo esc_url( $contact['claims_url'] ); ?>" class="transition-colors hover:text-white">
-                            <?php esc_html_e( 'Atención de reclamos', 'quantia-hub' ); ?>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="flex flex-wrap items-center justify-center gap-3 border-t border-white/10 pt-8">
-            <a href="<?php echo esc_url( $site_url ); ?>" class="rounded-full bg-white px-6 py-2.5 text-xs font-semibold text-ink transition-colors hover:bg-qh-100">
-                Quantia Hub
+        <div class="flex flex-wrap items-center justify-between gap-6 border-b border-white/10 pb-5">
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Quantia Hub" class="block transition-opacity hover:opacity-80">
+                <img src="<?php echo esc_url( content_url( '/uploads/2026/10/logo-de-quantia.png' ) ); ?>" alt="Quantia" class="h-8 w-auto brightness-0 invert">
             </a>
-            <a href="<?php echo esc_url( $bank_url ); ?>" target="_blank" rel="noopener noreferrer"
-               class="rounded-full border border-white/20 px-6 py-2.5 text-xs font-semibold text-white/80 transition-colors hover:border-qh hover:text-qh-300">
-                MMG Bank Corporation
-            </a>
+            
+            <div class="flex items-center gap-4">
+                <a href="https://www.instagram.com/quantiahub/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-qh hover:text-qh-300">
+                    <?php echo quantia_icon( 'instagram', 'h-4 w-4' ); ?>
+                </a>
+                <a href="https://www.facebook.com/p/Quantia-Hub-61554626611782/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-qh hover:text-qh-300">
+                    <?php echo quantia_icon( 'facebook', 'h-4 w-4' ); ?>
+                </a>
+                <a href="https://www.linkedin.com/company/quantia-hub/home/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-qh hover:text-qh-300">
+                    <?php echo quantia_icon( 'linkedin', 'h-4 w-4' ); ?>
+                </a>
+                <a href="https://www.youtube.com/@QuantiaHub" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-qh hover:text-qh-300">
+                    <?php echo quantia_icon( 'youtube', 'h-4 w-4' ); ?>
+                </a>
+                <a href="#top" aria-label="Volver arriba" class="ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-qh text-white transition-colors hover:bg-qh-600">
+                    <?php echo quantia_icon( 'arrow-up', 'h-4 w-4' ); ?>
+                </a>
+            </div>
         </div>
 
-        <div class="mt-10">
-            <p class="text-[11px] font-semibold uppercase tracking-widest text-white/40">
-                <?php esc_html_e( 'Regulado y supervisado por', 'quantia-hub' ); ?>
-            </p>
-            <ul class="mt-3 flex flex-wrap gap-x-6 gap-y-2">
-                <?php foreach ( $regulators as $regulator ) : ?>
-                    <li class="text-xs text-white/60"><?php echo esc_html( $regulator['name'] ); ?></li>
-                <?php endforeach; ?>
-            </ul>
-            <p class="mt-6 text-[10px] leading-relaxed text-white/40">
-                <?php
-                printf(
-                    esc_html__( '%1$s es la aplicación financiera de %2$s, entidad regulada en Panamá. La información de este sitio es de carácter informativo y no constituye una oferta ni una recomendación de inversión. Consulta tarifas vigentes y documentos regulatorios antes de contratar. Operación exclusiva para %3$s.', 'quantia-hub' ),
-                    esc_html( $full_brand ),
-                    esc_html( $bank ),
-                    esc_html( $market )
-                );
-                ?>
-            </p>
-            <p class="mt-4 text-[10px] text-white/40">
-                © <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( $bank ); ?>.
-                <?php esc_html_e( 'Todos los derechos reservados.', 'quantia-hub' ); ?>
-            </p>
+        <div class="grid grid-cols-4 gap-4 py-16 md:gap-10 lg:gap-12">
+            
+            <nav aria-labelledby="footer-products">
+                <h3 id="footer-products" class="text-xs font-semibold uppercase tracking-wider text-qh-300">Productos</h3>
+                <ul class="mt-6 space-y-4">
+                    <li><a href="<?php echo esc_url( home_url( '/productos/inversiones' ) ); ?>" class="text-sm text-white/65 transition-colors hover:text-white">Inversiones</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/productos/alcancias' ) ); ?>" class="text-sm text-white/65 transition-colors hover:text-white">Alcancías</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/productos/jubilación' ) ); ?>" class="text-sm text-white/65 transition-colors hover:text-white">Retiro</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/productos/tarjeta' ) ); ?>" class="text-sm text-white/65 transition-colors hover:text-white">Tarjetas</a></li>
+                </ul>
+            </nav>
+
+            <nav aria-labelledby="footer-site">
+                <h3 id="footer-site" class="text-xs font-semibold uppercase tracking-wider text-qh-300">Sitio</h3>
+                <ul class="mt-6 space-y-4">
+                    <li><a href="<?php echo esc_url( home_url( '/tarifas' ) ); ?>" class="text-sm text-white/65 transition-colors hover:text-white">Tarifas</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/aprende' ) ); ?>" class="text-sm text-white/65 transition-colors hover:text-white">Aprende</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/soporte' ) ); ?>" class="text-sm text-white/65 transition-colors hover:text-white">Soporte</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/nosotros' ) ); ?>" class="text-sm text-white/65 transition-colors hover:text-white">Nosotros</a></li>
+                </ul>
+            </nav>
+
+            <nav aria-labelledby="footer-legal">
+                <h3 id="footer-legal" class="text-xs font-semibold uppercase tracking-wider text-qh-300">Legal</h3>
+                <ul class="mt-6 space-y-4">
+                    <li><a href="<?php echo esc_url( home_url( '/legal/terminos-legales' ) ); ?>" class="text-sm text-white/65 underline-offset-4 transition-colors hover:text-white hover:underline">Términos legales</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/legal/aviso-de-privacidad' ) ); ?>" class="text-sm text-white/65 underline-offset-4 transition-colors hover:text-white hover:underline">Aviso de Privacidad</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/legal/aclaraciones-y-reclamaciones' ) ); ?>" class="text-sm text-white/65 underline-offset-4 transition-colors hover:text-white hover:underline">Aclaraciones y reclamaciones</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/legal/costos-y-comisiones' ) ); ?>" class="text-sm text-white/65 underline-offset-4 transition-colors hover:text-white hover:underline">Costos y comisiones</a></li>
+                </ul>
+            </nav>
+
+            <div>
+                <h3 class="text-xs font-semibold uppercase tracking-wider text-qh-300">Contacto</h3>
+                <ul class="mt-6 space-y-4 text-sm text-white/65">
+                    <li>
+                        <a href="https://wa.me/50764777460" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 transition-colors hover:text-white">
+                            <?php echo quantia_icon( 'message-circle', 'h-4 w-4 shrink-0' ); ?> <span class="break-all">+507 6477-7460</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:+5072087024" class="inline-flex items-center gap-2 transition-colors hover:text-white">
+                            <?php echo quantia_icon( 'phone', 'h-4 w-4 shrink-0' ); ?> <span class="break-all">+507 208-7024</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:quantia@mmgbank.com" class="inline-flex items-center gap-2 transition-colors hover:text-white">
+                            <?php echo quantia_icon( 'mail', 'h-4 w-4 shrink-0' ); ?> <span class="break-all">quantia@mmgbank.com</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:reclamos@mmgbank.com" class="transition-colors hover:text-white">Atención de reclamos</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+
+        <section aria-labelledby="footer-trust" class="rounded-3xl bg-white/[0.04] p-6 ring-1 ring-white/10 sm:p-8">
+            <!-- En móvil se apilan, en escritorio se alinean uno al lado del otro -->
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-6">
+                
+                <!-- BLOQUE 1: Superintendencias -->
+                <div>
+                    <h3 id="footer-trust" class="mb-4 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-white/55">
+                        <?php echo quantia_icon( 'shield-check', 'h-3.5 w-3.5 text-qh-300' ); ?> Regulado por
+                    </h3>
+                    <!-- LA CLAVE ESTÁ AQUÍ: flex-nowrap evita que salten de línea -->
+                    <div class="flex flex-row flex-nowrap gap-3 sm:gap-4">
+                        <span title="Superintendencia de Bancos de Panamá" class="flex items-center gap-3 rounded-xl bg-white/[0.06] p-2 pr-4 ring-1 ring-white/15 transition-colors hover:bg-white/[0.09]">
+                            <span class="flex h-16 w-20 shrink-0 items-center justify-center rounded-lg bg-white p-1.5">
+                                <img src="<?php echo esc_url( content_url( '/uploads/2026/11/Logo_Superintendencia-de-Bancos-de-Panama-1.png' ) ); ?>" alt="Logo SBP" class="h-full w-full object-contain">
+                            </span>
+                            <span class="whitespace-nowrap text-xs font-medium leading-tight text-white/80">Superintendencia de Bancos</span>
+                        </span>
+                        <span title="Superintendencia del Mercado de Valores" class="flex items-center gap-3 rounded-xl bg-white/[0.06] p-2 pr-4 ring-1 ring-white/15 transition-colors hover:bg-white/[0.09]">
+                            <span class="flex h-16 w-20 shrink-0 items-center justify-center rounded-lg bg-white p-1.5">
+                                <img src="<?php echo esc_url( content_url( '/uploads/2026/11/logo_Superintendencia-del-Mercado-de-Valores.png' ) ); ?>" alt="Logo SMV" class="h-full w-full object-contain">
+                            </span>
+                            <span class="whitespace-nowrap text-xs font-medium leading-tight text-white/80">Superintendencia de Valores</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- BLOQUE 2: Latinex -->
+                <div>
+                    <p class="mb-4 text-[11px] font-semibold uppercase tracking-wider text-white/55">Participante</p>
+                    <div class="flex flex-row gap-4">
+                        <span title="Latinex" class="flex items-center gap-3 rounded-xl bg-white/[0.06] p-2 pr-4 ring-1 ring-white/15 transition-colors hover:bg-white/[0.09]">
+                            <span class="flex h-16 w-20 shrink-0 items-center justify-center rounded-lg bg-white p-1.5">
+                                <img src="<?php echo esc_url( content_url( '/uploads/2026/11/Logo_Latinex.png' ) ); ?>" alt="Logo Latinex" class="h-full w-full object-contain">
+                            </span>
+                            <span class="whitespace-nowrap text-xs font-medium leading-tight text-white/80">Latinex</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- BLOQUE 3: Botón Centro Legal -->
+                <div class="shrink-0 flex items-center">
+                    <a href="<?php echo esc_url( home_url( '/legal' ) ); ?>" class="group inline-flex items-center justify-center gap-1.5 rounded-full bg-qh px-5 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-qh-600">
+                        Centro legal
+                        <?php echo quantia_icon( 'arrow-right', 'h-3 w-3 transition-transform group-hover:translate-x-0.5' ); ?>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- AQUÍ ESTABA EL CÓDIGO QUE FALTABA -->
+        <div class="mt-12 flex flex-col gap-5 border-t border-white/10 pt-10 lg:flex-row lg:items-center lg:justify-between">
+            <p class="shrink-0 text-xs text-white/45">© 2026 MMG Bank Corporation. Todos los derechos reservados.</p>
+        </div>
+
+        <p class="mt-6 max-w-4xl text-[11px] leading-relaxed text-white/45">
+            Quantia Hub es la aplicación financiera de MMG Bank Corporation, entidad regulada en Panamá. La información de este sitio es de carácter informativo y no constituye una oferta ni una recomendación de inversión. Consulta tarifas vigentes y documentos regulatorios antes de contratar. Operación exclusiva para Panamá. 
+            <a href="https://www.mmgbank.com" target="_blank" rel="noopener noreferrer" class="text-white/65 underline underline-offset-4 hover:text-white">Conoce MMG Bank</a>
+        </p>
+
     </div>
 </footer>

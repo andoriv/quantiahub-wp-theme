@@ -1,8 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-$marquee_text = __( 'Open it today · No minimum balance · 4% annual · ', 'quantia-hub' );
-$marquee_x3   = trim( str_repeat( $marquee_text, 3 ) );
+$marquee_text = __( 'Empieza hoy · Sin saldo mínimo · 4% anual · ', 'quantia-hub' );$marquee_x3   = trim( str_repeat( $marquee_text, 3 ) );
 ?>
 
 <div class="bg-white" data-reveal-frame>
@@ -17,12 +16,12 @@ $marquee_x3   = trim( str_repeat( $marquee_text, 3 ) );
         <div class="mx-auto grid max-w-6xl grid-cols-1 items-end gap-6 px-5 sm:gap-10 sm:px-6 lg:grid-cols-[1.2fr_1fr]">
             <div class="pb-4 sm:pb-10 lg:pb-24">
                 <h2 class="font-display text-5xl font-extrabold leading-[0.95] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
-                    <?php esc_html_e( 'Open your account', 'quantia-hub' ); ?><br>
-                    <?php esc_html_e( 'from the app?', 'quantia-hub' ); ?><br>
-                    <span class="text-qh-200"><?php esc_html_e( 'Now!', 'quantia-hub' ); ?></span>
+                    <?php esc_html_e( 'Abre tu cuenta', 'quantia-hub' ); ?><br>
+                    <?php esc_html_e( 'desde la app.', 'quantia-hub' ); ?>
+                    <span class="text-qh-200"><?php esc_html_e( '¡Ya!', 'quantia-hub' ); ?></span>
                 </h2>
                 <p class="mt-6 max-w-sm text-base leading-relaxed text-white/80">
-                    <?php esc_html_e( 'Take your bank with you and create your Quantia account the moment you need it.', 'quantia-hub' ); ?>
+                    <?php esc_html_e( 'Lleva tu banco a donde vayas. Abre tu cuenta Quantia en minutos, justo cuando la necesitas.', 'quantia-hub' ); ?>                
                 </p>
                 <div class="mt-8 flex flex-wrap items-center gap-4">
                     <?php get_template_part( 'template-parts/components/download-app-button', null, array(
