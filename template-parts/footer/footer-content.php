@@ -13,7 +13,6 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 
-<!-- Añadimos overflow-hidden para evitar que el scroll horizontal rompa el fondo verde -->
 <footer class="w-full overflow-hidden bg-ink pb-12 pt-20 text-white">
     <div class="mx-auto max-w-6xl px-5 sm:px-6">
 
@@ -99,15 +98,12 @@ defined( 'ABSPATH' ) || exit;
         </div>
 
         <section aria-labelledby="footer-trust" class="rounded-3xl bg-white/[0.04] p-6 ring-1 ring-white/10 sm:p-8">
-            <!-- En móvil se apilan, en escritorio se alinean uno al lado del otro -->
             <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-6">
                 
-                <!-- BLOQUE 1: Superintendencias -->
                 <div>
                     <h3 id="footer-trust" class="mb-4 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-white/55">
                         <?php echo quantia_icon( 'shield-check', 'h-3.5 w-3.5 text-qh-300' ); ?> Regulado por
                     </h3>
-                    <!-- LA CLAVE ESTÁ AQUÍ: flex-nowrap evita que salten de línea -->
                     <div class="flex flex-row flex-nowrap gap-3 sm:gap-4">
                         <span title="Superintendencia de Bancos de Panamá" class="flex items-center gap-3 rounded-xl bg-white/[0.06] p-2 pr-4 ring-1 ring-white/15 transition-colors hover:bg-white/[0.09]">
                             <span class="flex h-16 w-20 shrink-0 items-center justify-center rounded-lg bg-white p-1.5">
@@ -124,7 +120,6 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                 </div>
 
-                <!-- BLOQUE 2: Latinex -->
                 <div>
                     <p class="mb-4 text-[11px] font-semibold uppercase tracking-wider text-white/55">Participante</p>
                     <div class="flex flex-row gap-4">
@@ -137,7 +132,6 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                 </div>
 
-                <!-- BLOQUE 3: Botón Centro Legal -->
                 <div class="shrink-0 flex items-center">
                     <a href="<?php echo esc_url( home_url( '/legal' ) ); ?>" class="group inline-flex items-center justify-center gap-1.5 rounded-full bg-qh px-5 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-qh-600">
                         Centro legal
@@ -148,7 +142,6 @@ defined( 'ABSPATH' ) || exit;
             </div>
         </section>
 
-        <!-- AQUÍ ESTABA EL CÓDIGO QUE FALTABA -->
         <div class="mt-12 flex flex-col gap-5 border-t border-white/10 pt-10 lg:flex-row lg:items-center lg:justify-between">
             <p class="shrink-0 text-xs text-white/45">© 2026 MMG Bank Corporation. Todos los derechos reservados.</p>
         </div>

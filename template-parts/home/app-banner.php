@@ -31,7 +31,7 @@ $marquee_text = __( 'Empieza hoy · Sin saldo mínimo · 4% anual · ', 'quantia
                     ) ); ?>
                     <div class="flex flex-wrap items-center gap-3">
                         <span class="text-xs font-semibold uppercase tracking-widest text-white opacity-60">
-                            <?php esc_html_e( 'Available on', 'quantia-hub' ); ?>
+                            <?php esc_html_e( 'DISPONIBLE EN', 'quantia-hub' ); ?>
                         </span>
                         <a href="https://apps.apple.com/us/app/quantia-hub/id1499843860" target="_blank" rel="noopener noreferrer"
                            class="rounded-full border border-white/25 px-4 py-1.5 text-xs font-semibold text-white transition-colors hover:border-qh hover:text-qh-300">

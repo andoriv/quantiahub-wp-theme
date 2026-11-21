@@ -13,6 +13,9 @@ $schedules  = quantia_fallback_fee_schedules();
 $legal_text = quantia_fallback_fee_legal_text();
 $sheet      = quantia_fallback_fee_sheet();
 
+// FORZAMOS LA RUTA CORRECTA DEL PDF AQUÍ
+$sheet['href'] = content_url( '/uploads/2026/10/Tarifario_Quantia_Hub.pdf' );
+
 $default_schedule = $schedules[0];
 $default_counts   = quantia_fee_schedule_counts( $default_schedule );
 
@@ -48,7 +51,9 @@ $marquee_x3  = trim( str_repeat( $marquee_raw, 3 ) );
                 </p>
 
                 <div class="mt-9 flex flex-wrap items-center gap-3">
+                    <!-- Botón 1 (Hero): Añadido el atributo download -->
                     <a href="<?php echo esc_url( $sheet['href'] ); ?>"
+                        download
                         target="_blank" rel="noopener noreferrer"
                         data-quantia-fee-sheet
                         class="inline-flex items-center gap-2 rounded-full bg-qh px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-qh-600">
@@ -230,7 +235,9 @@ $marquee_x3  = trim( str_repeat( $marquee_raw, 3 ) );
                         <?php esc_html_e( 'Descarga el folleto oficial de tarifas con todos los conceptos, montos e impuestos aplicables.', 'quantia-hub' ); ?>
                     </p>
                     <div class="mt-9 flex flex-wrap items-center gap-3">
+                        <!-- Botón 2 (Footer CTA): Añadido el atributo download -->
                         <a href="<?php echo esc_url( $sheet['href'] ); ?>"
+                            download
                             target="_blank" rel="noopener noreferrer"
                             data-quantia-fee-sheet
                             class="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-ink transition-colors hover:bg-qh-100">
