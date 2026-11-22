@@ -1,7 +1,7 @@
 <?php
 /**
  * Fila individual de un beneficio/producto.
- * 
+ *
  * Contexto de Arquitectura:
  * - Consumido por: account-benefits.php (mediante un bucle foreach).
  * - Dependencias visuales: Usa quantia_icon() y phone-frame.php.
@@ -16,15 +16,30 @@ $b        = $args['benefit'];
 $index    = (int) $args['index'];
 $reversed = ( $index % 2 === 1 );
 
-// SOLUCIÓN: Acepta 'benefit_id' o el viejo 'id' para evitar errores de PHP
-$b_id     = $b['benefit_id'] ?? $b['id'] ?? '';
-$funds    = ! empty( $b['funds_plan'] ) ? quantia_get_funds( $b['funds_plan'] ) : null;
+$b_id  = $b['benefit_id'] ?? $b['id'] ?? '';
+$funds = ! empty( $b['funds_plan'] ) ? quantia_get_funds( $b['funds_plan'] ) : null;
+
+$screen_products = array(
+    'inversiones'         => 'inversiones',
+    'jubilación'          => 'jubilación',
+    'jubilacion'          => 'jubilación',
+    'cuenta corriente'    => 'inicio',
+    'kuara'               => 'kuara',
+    'alcancías'           => 'alcancias',
+    'alcancia'            => 'alcancias',
+    'tarjeta visa débito' => 'tarjeta',
+    'tarjeta visa debito' => 'tarjeta',
+    'tarjeta'             => 'tarjeta',
+);
+
+$product_key = strtolower( trim( wp_strip_all_tags( (string) ( $b['product'] ?? '' ) ) ) );
+$screen      = $screen_products[ $product_key ] ?? ( $b['screen'] ?? '' );
 
 $marquee_text = esc_html( $b['product'] ?? '' ) . ' ·';
 $marquee_x5   = trim( str_repeat( $marquee_text . ' ', 5 ) );
 ?>
 
-<article id="beneficio-<?php echo esc_attr( $b_id ); ?>"
+<article id="beneficio-<?php echo esc_attr( $b_id ?: $product_key ); ?>"
     class="grid grid-cols-1 items-center gap-10 border-t border-ink/10 py-14 first:border-t-0 first:pt-6 sm:gap-14 sm:py-20 lg:grid-cols-2 lg:gap-20 lg:py-28">
 
     <div class="<?php echo $reversed ? 'lg:order-last' : ''; ?>">
@@ -108,7 +123,7 @@ $marquee_x5   = trim( str_repeat( $marquee_text . ' ', 5 ) );
                  class="relative">
                 <?php get_template_part( 'template-parts/components/phone-frame', null, array(
                     'label'  => $b['screen_label'] ?? '',
-                    'screen' => $b['screen'] ?? '',
+                    'screen' => $screen,   
                 ) ); ?>
             </div>
         </div>

@@ -20,8 +20,8 @@ $card_positions = array(
 
     <?php if ( $bg ) : ?>
         <img src="<?php echo esc_url( $bg ); ?>" alt="" aria-hidden="true"
-            data-parallax data-parallax-speed="0.18"
-            class="absolute inset-0 h-full w-full scale-[1.08] object-cover object-right" />
+            data-parallax data-parallax-speed="0.08"
+            class="absolute inset-0 h-full w-full scale-100 object-cover object-right" />
     <?php else : ?>
         <div class="absolute inset-0 bg-gradient-to-br from-ink to-qh-900" aria-hidden="true"></div>
     <?php endif; ?>
