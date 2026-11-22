@@ -43,6 +43,7 @@ $quantia_features = array(
     '/features/articles/bootstrap.php',
     '/features/contact/bootstrap.php',
     '/features/legal/bootstrap.php',
+    '/features/media-images/bootstrap.php',
 );
 
 foreach ( $quantia_features as $quantia_file ) {

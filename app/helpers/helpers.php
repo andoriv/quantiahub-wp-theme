@@ -328,11 +328,12 @@ function quantia_product_option_icons( string $slug ): array {
  */
 function quantia_brand_image( string $key ): string {
     $map = array(
-        'team'    => home_url( '/wp-content/uploads/2026/10/7e9ca160-e5f6-4a1a-af25-902c93113a67.jpg' ),
-        'learn'   => home_url( '/wp-content/uploads/2026/10/7732df65-c2c8-43c1-9d99-d9456e4a2947.jpg' ),
-        'support' => home_url( '/wp-content/uploads/2026/10/5962edf7-e9c9-467e-ab1c-87fade080c22.jpg' ),
+        'team'    => 'home_team_image',
+        'learn'   => 'home_learn_image',
+        'support' => 'contact_support_image',
     );
-    return $map[ $key ] ?? '';
+    $managed_key = $map[ $key ] ?? '';
+    return $managed_key ? quantia_managed_image_src( $managed_key ) : '';
 }
 
 /**

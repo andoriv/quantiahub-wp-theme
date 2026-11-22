@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 
         <div class="flex flex-wrap items-center justify-between gap-6 border-b border-white/10 pb-5">
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Quantia Hub" class="block transition-opacity hover:opacity-80">
-                <img src="<?php echo esc_url( content_url( '/uploads/2026/10/logo-de-quantia.png' ) ); ?>" alt="Quantia" class="h-8 w-auto brightness-0 invert">
+                <img src="<?php echo esc_url( quantia_managed_image_src( 'brand_logo' ) ); ?>" alt="Quantia" class="h-8 w-auto brightness-0 invert">
             </a>
             
             <div class="flex items-center gap-4">
@@ -107,13 +107,13 @@ defined( 'ABSPATH' ) || exit;
                     <div class="flex flex-row flex-nowrap gap-3 sm:gap-4">
                         <span title="Superintendencia de Bancos de Panamá" class="flex items-center gap-3 rounded-xl bg-white/[0.06] p-2 pr-4 ring-1 ring-white/15 transition-colors hover:bg-white/[0.09]">
                             <span class="flex h-16 w-20 shrink-0 items-center justify-center rounded-lg bg-white p-1.5">
-                                <img src="<?php echo esc_url( content_url( '/uploads/2026/11/Logo_Superintendencia-de-Bancos-de-Panama-1.png' ) ); ?>" alt="Logo SBP" class="h-full w-full object-contain">
+                                <img src="<?php echo esc_url( quantia_managed_image_src( 'regulator_sbp' ) ); ?>" alt="Logo SBP" class="h-full w-full object-contain">
                             </span>
                             <span class="whitespace-nowrap text-xs font-medium leading-tight text-white/80">Superintendencia de Bancos</span>
                         </span>
                         <span title="Superintendencia del Mercado de Valores" class="flex items-center gap-3 rounded-xl bg-white/[0.06] p-2 pr-4 ring-1 ring-white/15 transition-colors hover:bg-white/[0.09]">
                             <span class="flex h-16 w-20 shrink-0 items-center justify-center rounded-lg bg-white p-1.5">
-                                <img src="<?php echo esc_url( content_url( '/uploads/2026/11/logo_Superintendencia-del-Mercado-de-Valores.png' ) ); ?>" alt="Logo SMV" class="h-full w-full object-contain">
+                                <img src="<?php echo esc_url( quantia_managed_image_src( 'regulator_smv' ) ); ?>" alt="Logo SMV" class="h-full w-full object-contain">
                             </span>
                             <span class="whitespace-nowrap text-xs font-medium leading-tight text-white/80">Superintendencia de Valores</span>
                         </span>
@@ -125,7 +125,7 @@ defined( 'ABSPATH' ) || exit;
                     <div class="flex flex-row gap-4">
                         <span title="Latinex" class="flex items-center gap-3 rounded-xl bg-white/[0.06] p-2 pr-4 ring-1 ring-white/15 transition-colors hover:bg-white/[0.09]">
                             <span class="flex h-16 w-20 shrink-0 items-center justify-center rounded-lg bg-white p-1.5">
-                                <img src="<?php echo esc_url( content_url( '/uploads/2026/11/Logo_Latinex.png' ) ); ?>" alt="Logo Latinex" class="h-full w-full object-contain">
+                                <img src="<?php echo esc_url( quantia_managed_image_src( 'regulator_latinex' ) ); ?>" alt="Logo Latinex" class="h-full w-full object-contain">
                             </span>
                             <span class="whitespace-nowrap text-xs font-medium leading-tight text-white/80">Latinex</span>
                         </span>
