@@ -76,8 +76,11 @@ function quantia_seo_meta(): void {
     $og_type     = 'website';
     $article_meta = array();
 
-    $fallback_image = content_url( '/uploads/2026/11/quantia-og-default.jpg' );
-
+    $fallback_image = quantia_managed_image_src( 'og_default', 'full' );
+    if ( ! $fallback_image ) {
+        $fallback_image = content_url( '/uploads/2026/11/quantia-og-default.jpg' );
+    }
+    
     if ( is_singular() ) {
         $post_id     = get_queried_object_id();
         $post        = get_post( $post_id );

@@ -12,27 +12,7 @@
 defined( 'ABSPATH' ) || exit;
 
 function quantia_fallback_hero_background(): string {
-    $value = quantia_option( 'home_hero_background', '' );
-
-    if ( is_array( $value ) && ! empty( $value['url'] ) ) {
-        return $value['url'];
-    }
-    if ( is_numeric( $value ) ) {
-        $url = wp_get_attachment_image_url( (int) $value, 'quantia-hero' );
-        if ( $url ) {
-            return $url;
-        }
-    }
-    if ( is_string( $value ) && '' !== $value ) {
-        return $value;
-    }
-
-    $local = QUANTIA_DIR . '/assets/img/hero-bg.jpg';
-    if ( file_exists( $local ) ) {
-        return quantia_asset( 'assets/img/hero-bg.jpg' );
-    }
-
-    return home_url( '/wp-content/uploads/2026/11/MMG.webp' );
+    return quantia_managed_image_src( 'home_hero_background', 'quantia-hero' );
 }
 
 function quantia_fallback_hero_credentials(): array {
@@ -460,8 +440,8 @@ function quantia_fallback_products(): array {
             'title'            => __( 'Portafolios de', 'quantia-hub' ),
             'title_highlight'  => __( 'inversión', 'quantia-hub' ),
             'intro'            => __( 'Conoce tu perfil de riesgo, revisa la estrategia recomendada y ejecuta tus compras desde la app. Inviertes de forma diversificada a través de los fondos de MMG Bank.', 'quantia-hub' ),
-            'hero_image'       => home_url( '/wp-content/uploads/2026/10/6c38f06a-7560-42c3-bfbf-906b175fdc95.jpg' ),
-            'detail_image'     => home_url( '/wp-content/uploads/2026/10/6c638953-09cb-4d25-9c8b-1e8ce1c7e277.jpg' ),
+            'hero_image'       => quantia_fallback_product_image( 'inversiones', 'hero' ),
+            'detail_image'     => quantia_fallback_product_image( 'inversiones', 'detail' ),
             'card_summary'     => __( 'Portafolios diversificados administrados según tu perfil de riesgo.', 'quantia-hub' ),
             'what_is_title'    => __( '¿Qué es Inversiones?', 'quantia-hub' ),
             'what_is'          => array(
@@ -516,8 +496,8 @@ function quantia_fallback_products(): array {
             'title'            => __( 'Alcancías', 'quantia-hub' ),
             'title_highlight'  => __( 'META y LIBRE', 'quantia-hub' ),
             'intro'            => __( 'Separa tu dinero por objetivos dentro de tu cuenta Quantia, gana interés sobre el saldo y automatiza tus aportes para no depender de la voluntad de cada mes.', 'quantia-hub' ),
-            'hero_image'       => home_url( '/wp-content/uploads/2026/10/cece73f6-16ae-46da-b9c2-29a7511db492.jpg' ),
-            'detail_image'     => home_url( '/wp-content/uploads/2026/10/e9bb4a41-0739-4cbb-9ee7-4658599e4036.jpg' ),
+            'hero_image'       => quantia_fallback_product_image( 'alcancias', 'hero' ),
+            'detail_image'     => quantia_fallback_product_image( 'alcancias', 'detail' ),
             'card_summary'     => __( 'Ahorro META y LIBRE con interés y aportes automáticos.', 'quantia-hub' ),
             'what_is_title'    => __( '¿Qué son las Alcancías?', 'quantia-hub' ),
             'what_is'          => array(
@@ -568,8 +548,8 @@ function quantia_fallback_products(): array {
             'title'            => __( 'Fondo de', 'quantia-hub' ),
             'title_highlight'  => __( 'jubilación', 'quantia-hub' ),
             'intro'            => __( 'Inicia el proceso desde Quantia Hub, completa tu apertura en Quantia AFP y programa aportes automáticos. Consulta tu historial y rendimiento mientras construyes el hábito que respalda tu futuro.', 'quantia-hub' ),
-            'hero_image'       => home_url( '/wp-content/uploads/2026/10/49e4de75-73c4-43ea-977b-6f4f95825596.jpg' ),
-            'detail_image'     => home_url( '/wp-content/uploads/2026/10/b4fe8526-17d9-455f-9505-13bc2940af4f.jpg' ),
+            'hero_image'       => quantia_fallback_product_image( 'jubilación', 'hero' ),
+            'detail_image'     => quantia_fallback_product_image( 'jubilación', 'detail' ),
             'card_summary'     => __( 'Fondo de jubilación administrado por Quantia AFP.', 'quantia-hub' ),
             'what_is_title'    => __( '¿Qué es el fondo de jubilación?', 'quantia-hub' ),
             'what_is'          => array(
@@ -624,8 +604,8 @@ function quantia_fallback_products(): array {
             'title'            => __( 'Tu Tarjeta', 'quantia-hub' ),
             'title_highlight'  => __( 'Visa Débito', 'quantia-hub' ),
             'intro'            => __( 'Usa el saldo de tu cuenta Quantia en comercios y cajeros, dentro y fuera de Panamá, con control y seguridad desde la app.', 'quantia-hub' ),
-            'hero_image'       => home_url( '/wp-content/uploads/2026/10/86af8fbe-dae8-4f13-9e69-6902ed1b0690.jpg' ),
-            'detail_image'     => home_url( '/wp-content/uploads/2026/10/34e39827-e8c6-4f2b-a9b7-01678ef6b61a.jpg' ),
+            'hero_image'       => quantia_fallback_product_image( 'tarjeta', 'hero' ),
+            'detail_image'     => quantia_fallback_product_image( 'tarjeta', 'detail' ),
             'card_summary'     => __( 'Visa Débito para comercios y cajeros, con control desde la app.', 'quantia-hub' ),
             'what_is_title'    => __( '¿Qué es la Tarjeta Visa Débito?', 'quantia-hub' ),
             'what_is'          => array(
@@ -785,25 +765,17 @@ function quantia_asset_class_info(): array {
 }
 
 function quantia_fallback_product_image( string $slug, string $kind = 'hero' ): string {
-    $map = array(
-        'inversiones' => array(
-            'hero'   => home_url( '/wp-content/uploads/2026/10/6c38f06a-7560-42c3-bfbf-906b175fdc95.jpg' ),
-            'detail' => home_url( '/wp-content/uploads/2026/10/6c638953-09cb-4d25-9c8b-1e8ce1c7e277.jpg' ),
-        ),
-        'alcancias' => array(
-            'hero'   => home_url( '/wp-content/uploads/2026/10/cece73f6-16ae-46da-b9c2-29a7511db492.jpg' ),
-            'detail' => home_url( '/wp-content/uploads/2026/10/e9bb4a41-0739-4cbb-9ee7-4658599e4036.jpg' ),
-        ),
-        'jubilación' => array(
-            'hero'   => home_url( '/wp-content/uploads/2026/10/49e4de75-73c4-43ea-977b-6f4f95825596.jpg' ),
-            'detail' => home_url( '/wp-content/uploads/2026/10/b4fe8526-17d9-455f-9505-13bc2940af4f.jpg' ),
-        ),
-        'tarjeta' => array(
-            'hero'   => home_url( '/wp-content/uploads/2026/10/86af8fbe-dae8-4f13-9e69-6902ed1b0690.jpg' ),
-            'detail' => home_url( '/wp-content/uploads/2026/10/34e39827-e8c6-4f2b-a9b7-01678ef6b61a.jpg' ),
-        ),
+    $slug_map = array(
+        'inversiones' => 'inversiones',
+        'alcancias'   => 'alcancias',
+        'jubilación'  => 'jubilacion',
+        'tarjeta'     => 'tarjeta',
     );
-    return $map[ $slug ][ $kind ] ?? '';
+    $clean = $slug_map[ $slug ] ?? sanitize_key( $slug );
+    $kind  = ( 'detail' === $kind ) ? 'detail' : 'hero';
+    $key   = 'producto_' . $clean . '_' . $kind;
+
+    return quantia_managed_image_src( $key );
 }
 
 function quantia_fallback_regulators(): array {
@@ -829,7 +801,7 @@ function quantia_fallback_regulators(): array {
 function quantia_fallback_trust_bank(): array {
     return array(
         'heading'    => __( 'Detrás de la app hay un banco real: MMG Bank, banca de inversión con trayectoria en Panamá.', 'quantia-hub' ),
-        'image'      => home_url( '/wp-content/uploads/2026/11/MMG.webp' ),
+        'image'      => quantia_managed_image_src( 'home_trust_bank' ),
         'image_alt'  => __( 'Equipo de Quantia Hub trabajando en sus oficinas en Ciudad de Panamá', 'quantia-hub' ),
         'badge_kicker' => __( 'Una solución de', 'quantia-hub' ),
         'badge_name'   => __( 'MMG Bank Corporation', 'quantia-hub' ),

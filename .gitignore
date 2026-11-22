@@ -10,6 +10,7 @@ secrets.json
 script/
 scripts/
 restored/
+export/
 
 # --- Node.js & Dependencias ---
 node_modules/
