@@ -79,39 +79,39 @@ function quantia_media_registry(): array {
         ),
 
         'productos' => array(
-            'label'       => __( 'Productos', 'quantia-hub' ),
-            'description' => __( 'Imágenes de portada y detalle para cada producto.', 'quantia-hub' ),
+            'label'       => __( 'Productos (imágenes de la web)', 'quantia-hub' ),
+            'description' => __( 'Imágenes que aparecen en las páginas de cada producto: hero y detalle. Distintas de las pantallas de la app (ver sección Frames).', 'quantia-hub' ),
             'items'       => array(
                 'producto_inversiones_hero' => array(
-                    'label'   => __( 'Inversiones — Hero', 'quantia-hub' ),
+                    'label'   => __( 'Inversiones · Imagen hero (web)', 'quantia-hub' ),
                     'default' => home_url( '/wp-content/uploads/2026/10/6c38f06a-7560-42c3-bfbf-906b175fdc95.jpg' ),
                 ),
                 'producto_inversiones_detail' => array(
-                    'label'   => __( 'Inversiones — Detalle', 'quantia-hub' ),
+                    'label'   => __( 'Inversiones · Imagen de detalle (web)', 'quantia-hub' ),
                     'default' => home_url( '/wp-content/uploads/2026/10/6c638953-09cb-4d25-9c8b-1e8ce1c7e277.jpg' ),
                 ),
                 'producto_alcancias_hero' => array(
-                    'label'   => __( 'Alcancías — Hero', 'quantia-hub' ),
+                    'label'   => __( 'Alcancías · Imagen hero (web)', 'quantia-hub' ),
                     'default' => home_url( '/wp-content/uploads/2026/10/cece73f6-16ae-46da-b9c2-29a7511db492.jpg' ),
                 ),
                 'producto_alcancias_detail' => array(
-                    'label'   => __( 'Alcancías — Detalle', 'quantia-hub' ),
+                    'label'   => __( 'Alcancías · Imagen de detalle (web)', 'quantia-hub' ),
                     'default' => home_url( '/wp-content/uploads/2026/10/e9bb4a41-0739-4cbb-9ee7-4658599e4036.jpg' ),
                 ),
                 'producto_jubilacion_hero' => array(
-                    'label'   => __( 'Jubilación — Hero', 'quantia-hub' ),
+                    'label'   => __( 'Jubilación · Imagen hero (web)', 'quantia-hub' ),
                     'default' => home_url( '/wp-content/uploads/2026/10/49e4de75-73c4-43ea-977b-6f4f95825596.jpg' ),
                 ),
                 'producto_jubilacion_detail' => array(
-                    'label'   => __( 'Jubilación — Detalle', 'quantia-hub' ),
+                    'label'   => __( 'Jubilación · Imagen de detalle (web)', 'quantia-hub' ),
                     'default' => home_url( '/wp-content/uploads/2026/10/b4fe8526-17d9-455f-9505-13bc2940af4f.jpg' ),
                 ),
                 'producto_tarjeta_hero' => array(
-                    'label'   => __( 'Tarjeta — Hero', 'quantia-hub' ),
+                    'label'   => __( 'Tarjeta Visa Débito · Imagen hero (web)', 'quantia-hub' ),
                     'default' => home_url( '/wp-content/uploads/2026/10/86af8fbe-dae8-4f13-9e69-6902ed1b0690.jpg' ),
                 ),
                 'producto_tarjeta_detail' => array(
-                    'label'   => __( 'Tarjeta — Detalle', 'quantia-hub' ),
+                    'label'   => __( 'Tarjeta Visa Débito · Imagen de detalle (web)', 'quantia-hub' ),
                     'default' => home_url( '/wp-content/uploads/2026/10/34e39827-e8c6-4f2b-a9b7-01678ef6b61a.jpg' ),
                 ),
             ),
@@ -126,6 +126,43 @@ function quantia_media_registry(): array {
                     'description' => __( 'Foto del agente atendiendo. Aparece en /soporte/.', 'quantia-hub' ),
                     'default'     => home_url( '/wp-content/uploads/2026/10/5962edf7-e9c9-467e-ab1c-87fade080c22.jpg' ),
                     'legacy_key'  => 'support_image',
+                ),
+            ),
+        ),
+
+        'frames' => array(
+            'label'       => __( 'Frames (pantallas de la app)', 'quantia-hub' ),
+            'description' => __( 'Capturas reales de la app Quantia Hub. Reemplazan el contenido interior del marco del teléfono. Si dejas una vacía, se mantiene el mockup original del tema.', 'quantia-hub' ),
+            'items'       => array(
+                'frame_inversiones' => array(
+                    'label'       => __( 'Inversiones · Pantalla de la app', 'quantia-hub' ),
+                    'description' => __( 'Portafolio de inversiones con rendimiento y distribución por fondo.', 'quantia-hub' ),
+                    'default'     => '',
+                ),
+                'frame_jubilacion' => array(
+                    'label'       => __( 'Jubilación · Pantalla de la app', 'quantia-hub' ),
+                    'description' => __( 'Fondo de jubilación con saldo acumulado y aportes.', 'quantia-hub' ),
+                    'default'     => '',
+                ),
+                'frame_inicio' => array(
+                    'label'       => __( 'Cuenta corriente · Pantalla de la app', 'quantia-hub' ),
+                    'description' => __( 'Pantalla de inicio de la app con el saldo y accesos rápidos.', 'quantia-hub' ),
+                    'default'     => '',
+                ),
+                'frame_kuara' => array(
+                    'label'       => __( 'Kuara · Pantalla de la app', 'quantia-hub' ),
+                    'description' => __( 'Transferencia interbancaria Kuara con banco destino y confirmación.', 'quantia-hub' ),
+                    'default'     => '',
+                ),
+                'frame_alcancias' => array(
+                    'label'       => __( 'Alcancías · Pantalla de la app', 'quantia-hub' ),
+                    'description' => __( 'Alcancías META y LIBRE con metas y porcentaje de avance.', 'quantia-hub' ),
+                    'default'     => '',
+                ),
+                'frame_tarjeta' => array(
+                    'label'       => __( 'Tarjeta Visa Débito · Pantalla de la app', 'quantia-hub' ),
+                    'description' => __( 'Visa Débito con movimientos y bloqueo de tarjeta.', 'quantia-hub' ),
+                    'default'     => '',
                 ),
             ),
         ),

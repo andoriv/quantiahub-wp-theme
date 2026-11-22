@@ -96,3 +96,37 @@ function quantia_managed_image_render( string $key, string $size = 'large', arra
 
     return sprintf( '<img src="%s" alt="%s"%s>', esc_url( $src ), esc_attr( $alt ), $attrs );
 }
+
+/**
+ * Devuelve true si la imagen tiene un override explícito (biblioteca o URL externa).
+ * No cuenta ni el legacy ni el default.
+ *
+ * @param string $key Key del registry.
+ * @return bool
+ */
+function quantia_managed_image_has_override( string $key ): bool {
+    $entry = quantia_managed_images_option()[ $key ] ?? null;
+    if ( ! is_array( $entry ) ) {
+        return false;
+    }
+    return ! empty( $entry['id'] ) || ! empty( $entry['url'] );
+}
+
+/**
+ * Devuelve el key del registry para un screen de phone-frame.
+ *
+ * @param string $screen Valor del parámetro 'screen' del componente.
+ * @return string Key del registry, o cadena vacía si no hay frame registrado.
+ */
+function quantia_media_frame_key_for_screen( string $screen ): string {
+    $map = array(
+        'inicio'      => 'frame_inicio',
+        'inversiones' => 'frame_inversiones',
+        'alcancias'   => 'frame_alcancias',
+        'jubilación'  => 'frame_jubilacion',
+        'jubilacion'  => 'frame_jubilacion',
+        'tarjeta'     => 'frame_tarjeta',
+        'kuara'       => 'frame_kuara',
+    );
+    return $map[ $screen ] ?? '';
+}
