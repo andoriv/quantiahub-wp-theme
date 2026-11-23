@@ -124,3 +124,92 @@ function quantia_resource_hints( $urls, $relation_type ) {
     }
     return $urls;
 }
+
+/**
+ * Carga Cloudflare Turnstile solo en /soporte/ y si está configurado.
+ */
+add_action( 'wp_enqueue_scripts', 'quantia_enqueue_turnstile' );
+function quantia_enqueue_turnstile(): void {
+    if ( ! function_exists( 'quantia_turnstile_is_configured' ) || ! quantia_turnstile_is_configured() ) {
+        return;
+    }
+    if ( ! is_page( 'soporte' ) ) {
+        return;
+    }
+    wp_enqueue_script(
+        'quantia-turnstile',
+        'https://challenges.cloudflare.com/turnstile/v0/api.js',
+        array(),
+        null,
+        array(
+            'strategy'  => 'async',
+            'in_footer' => true,
+        )
+    );
+}
+
+/**
+ * Carga los recursos del formulario de contacto.
+ */
+add_action(
+    'wp_enqueue_scripts',
+    'quantia_enqueue_contact_resources'
+);
+
+function quantia_enqueue_contact_resources(): void {
+    /*
+     * Si el slug real de la página no es "soporte",
+     * cambia este valor.
+     */
+    if ( ! is_page( 'soporte' ) ) {
+        return;
+    }
+
+    /*
+     * JavaScript del formulario.
+     */
+    $contact_relative_path = '/assets/js/contact-form.js';
+    $contact_absolute_path =
+        get_stylesheet_directory()
+        . $contact_relative_path;
+
+    $contact_version = file_exists(
+        $contact_absolute_path
+    )
+        ? (string) filemtime(
+            $contact_absolute_path
+        )
+        : null;
+
+    wp_enqueue_script(
+        'quantia-contact-form',
+        get_stylesheet_directory_uri()
+            . $contact_relative_path,
+        array(),
+        $contact_version,
+        true
+    );
+
+    /*
+     * Cloudflare Turnstile.
+     */
+    if (
+        ! function_exists(
+            'quantia_turnstile_is_configured'
+        ) ||
+        ! quantia_turnstile_is_configured()
+    ) {
+        return;
+    }
+
+    wp_enqueue_script(
+        'quantia-turnstile',
+        'https://challenges.cloudflare.com/turnstile/v0/api.js',
+        array(),
+        null,
+        array(
+            'strategy'  => 'async',
+            'in_footer' => true,
+        )
+    );
+}
