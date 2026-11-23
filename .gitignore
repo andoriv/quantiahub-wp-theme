@@ -5,6 +5,7 @@
 *.pem
 *.key
 secrets.json
+opencode.json
 
 # --- Carpetas Locales / Temporales ---
 script/
