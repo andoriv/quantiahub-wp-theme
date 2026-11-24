@@ -17,6 +17,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Imprime la metaetiqueta robots según el contexto de la petición.
+ *
+ * @return void
+ */
 add_action( 'wp_head', 'quantia_robots_meta', 1 );
 function quantia_robots_meta(): void {
 
@@ -29,10 +34,18 @@ function quantia_robots_meta(): void {
         $noindex = true;
     }
 
-    $content = $noindex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
+    $content = $noindex
+        ? 'noindex, nofollow'
+        : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
+
     echo '<meta name="robots" content="' . esc_attr( $content ) . '">' . "\n";
 }
 
+/**
+ * Imprime la etiqueta canonical cuando no hay un plugin de SEO activo.
+ *
+ * @return void
+ */
 add_action( 'wp_head', 'quantia_canonical', 2 );
 function quantia_canonical(): void {
     if ( defined( 'WPSEO_VERSION' ) || class_exists( 'RankMath' ) ) {
@@ -58,29 +71,42 @@ function quantia_canonical(): void {
     }
 }
 
+/**
+ * Imprime las metaetiquetas de descripción, Open Graph y Twitter Card.
+ *
+ * La imagen de respaldo se resuelve primero a través del feature de
+ * media-images cuando está disponible y, si no lo está, se usa la URL
+ * estática del directorio de uploads. Este fallback protege el sitio
+ * frente a despliegues parciales del módulo de imágenes.
+ *
+ * @return void
+ */
 add_action( 'wp_head', 'quantia_seo_meta', 5 );
 function quantia_seo_meta(): void {
     if ( defined( 'WPSEO_VERSION' ) || class_exists( 'RankMath' ) ) {
         return;
     }
 
-    $site_name   = get_bloginfo( 'name' );
-    $locale      = get_locale();
-    $og_locale   = str_replace( '-', '_', $locale );
-    $title       = wp_get_document_title();
-    $description = '';
-    $image_url   = '';
-    $image_alt   = $site_name;
-    $image_w     = 0;
-    $image_h     = 0;
-    $og_type     = 'website';
+    $site_name    = get_bloginfo( 'name' );
+    $locale       = get_locale();
+    $og_locale    = str_replace( '-', '_', $locale );
+    $title        = wp_get_document_title();
+    $description  = '';
+    $image_url    = '';
+    $image_alt    = $site_name;
+    $image_w      = 0;
+    $image_h      = 0;
+    $og_type      = 'website';
     $article_meta = array();
 
-    $fallback_image = quantia_managed_image_src( 'og_default', 'full' );
+    $fallback_image = '';
+    if ( function_exists( 'quantia_managed_image_src' ) ) {
+        $fallback_image = quantia_managed_image_src( 'og_default', 'full' );
+    }
     if ( ! $fallback_image ) {
         $fallback_image = content_url( '/uploads/2026/11/quantia-og-default.jpg' );
     }
-    
+
     if ( is_singular() ) {
         $post_id     = get_queried_object_id();
         $post        = get_post( $post_id );
@@ -88,15 +114,15 @@ function quantia_seo_meta(): void {
 
         $thumbnail_id = get_post_thumbnail_id( $post_id );
         if ( $thumbnail_id ) {
-            $image_data  = wp_get_attachment_image_src( $thumbnail_id, 'quantia-hero' );
-            $image_url   = $image_data ? $image_data[0] : '';
-            $image_w     = $image_data ? (int) $image_data[1] : 0;
-            $image_h     = $image_data ? (int) $image_data[2] : 0;
-            $image_alt   = get_post_meta( $thumbnail_id, '_wp_attachment_image_alt', true ) ?: $site_name;
+            $image_data = wp_get_attachment_image_src( $thumbnail_id, 'quantia-hero' );
+            $image_url  = $image_data ? $image_data[0] : '';
+            $image_w    = $image_data ? (int) $image_data[1] : 0;
+            $image_h    = $image_data ? (int) $image_data[2] : 0;
+            $image_alt  = get_post_meta( $thumbnail_id, '_wp_attachment_image_alt', true ) ?: $site_name;
         }
 
         if ( 'post' === get_post_type( $post_id ) ) {
-            $og_type = 'article';
+            $og_type      = 'article';
             $article_meta = array(
                 'published_time' => get_the_date( 'c', $post ),
                 'modified_time'  => get_the_modified_date( 'c', $post ),
@@ -136,8 +162,15 @@ function quantia_seo_meta(): void {
             echo '<meta property="og:image:width" content="' . esc_attr( $image_w ) . '">' . "\n";
             echo '<meta property="og:image:height" content="' . esc_attr( $image_h ) . '">' . "\n";
         }
-        $ext = strtolower( pathinfo( $image_url, PATHINFO_EXTENSION ) );
-        $mime_map = array( 'jpg' => 'image/jpeg', 'jpeg' => 'image/jpeg', 'png' => 'image/png', 'webp' => 'image/webp', 'gif' => 'image/gif' );
+
+        $ext      = strtolower( pathinfo( $image_url, PATHINFO_EXTENSION ) );
+        $mime_map = array(
+            'jpg'  => 'image/jpeg',
+            'jpeg' => 'image/jpeg',
+            'png'  => 'image/png',
+            'webp' => 'image/webp',
+            'gif'  => 'image/gif',
+        );
         if ( isset( $mime_map[ $ext ] ) ) {
             echo '<meta property="og:image:type" content="' . esc_attr( $mime_map[ $ext ] ) . '">' . "\n";
         }
@@ -167,6 +200,12 @@ function quantia_seo_meta(): void {
     }
 }
 
+/**
+ * Imprime el JSON-LD del sitio con los grafos Organization, WebSite,
+ * WebPage, BreadcrumbList y FinancialService según el contexto.
+ *
+ * @return void
+ */
 add_action( 'wp_head', 'quantia_jsonld', 10 );
 function quantia_jsonld(): void {
     if ( defined( 'WPSEO_VERSION' ) || class_exists( 'RankMath' ) ) {
@@ -176,28 +215,26 @@ function quantia_jsonld(): void {
     $graphs = array();
     $home   = home_url( '/' );
 
-    // CORREGIDO: Los IDs ahora tienen su string completo y no rompen el array
     $graphs[] = array(
-        '@type'            => 'Organization',
-        '@id'              => $home . '#organization',
-        'name'             => 'MMG Bank Corporation',
-        'alternateName'    => 'Quantia Hub',
-        'url'              => $home,
-        'logo'             => array(
+        '@type'         => 'Organization',
+        '@id'           => $home . '#organization',
+        'name'          => 'MMG Bank Corporation',
+        'alternateName' => 'Quantia Hub',
+        'url'           => $home,
+        'logo'          => array(
             '@type'  => 'ImageObject',
             'url'    => content_url( '/uploads/2026/10/logo-de-quantia.png' ),
             'width'  => 300,
             'height' => 60,
         ),
-        'contactPoint'     => array(
+        'contactPoint'  => array(
             '@type'             => 'ContactPoint',
             'telephone'         => '+507-208-7024',
             'contactType'       => 'customer service',
             'areaServed'        => 'PA',
             'availableLanguage' => 'Spanish',
         ),
-        // CORREGIDO: Las URLs de redes sociales ahora están completas
-        'sameAs'           => array(
+        'sameAs'        => array(
             'https://www.instagram.com/quantiahub/',
             'https://www.facebook.com/p/Quantia-Hub-61554626611782/',
             'https://www.linkedin.com/company/quantia-hub/home/',
@@ -206,14 +243,14 @@ function quantia_jsonld(): void {
     );
 
     $graphs[] = array(
-        '@type'            => 'WebSite',
-        '@id'              => $home . '#website',
-        'url'              => $home,
-        'name'             => get_bloginfo( 'name' ),
-        'description'      => get_bloginfo( 'description' ),
-        'publisher'        => array( '@id' => $home . '#organization' ),
-        'inLanguage'       => 'es-PA',
-        'potentialAction'  => array(
+        '@type'           => 'WebSite',
+        '@id'             => $home . '#website',
+        'url'             => $home,
+        'name'            => get_bloginfo( 'name' ),
+        'description'     => get_bloginfo( 'description' ),
+        'publisher'       => array( '@id' => $home . '#organization' ),
+        'inLanguage'      => 'es-PA',
+        'potentialAction' => array(
             '@type'       => 'SearchAction',
             'target'      => array(
                 '@type'       => 'EntryPoint',
@@ -224,15 +261,15 @@ function quantia_jsonld(): void {
     );
 
     $current_url = home_url( add_query_arg( array() ) );
-    $webpage = array(
-        '@type'           => 'WebPage',
-        '@id'             => $current_url . '#webpage',
-        'url'             => $current_url,
-        'name'            => wp_get_document_title(),
-        'isPartOf'        => array( '@id' => $home . '#website' ),
-        'about'           => array( '@id' => $home . '#organization' ),
-        'inLanguage'      => 'es-PA',
-        'datePublished'   => get_bloginfo( 'date' ),
+    $webpage     = array(
+        '@type'         => 'WebPage',
+        '@id'           => $current_url . '#webpage',
+        'url'           => $current_url,
+        'name'          => wp_get_document_title(),
+        'isPartOf'      => array( '@id' => $home . '#website' ),
+        'about'         => array( '@id' => $home . '#organization' ),
+        'inLanguage'    => 'es-PA',
+        'datePublished' => get_bloginfo( 'date' ),
     );
 
     if ( is_singular() ) {
@@ -252,14 +289,13 @@ function quantia_jsonld(): void {
         }
 
         if ( 'post' === get_post_type( $post_id ) ) {
-            $webpage['@type'] = 'Article';
-
-            $webpage['headline']        = get_the_title( $post_id );
-            $webpage['author']          = array(
+            $webpage['@type']            = 'Article';
+            $webpage['headline']         = get_the_title( $post_id );
+            $webpage['author']           = array(
                 '@type' => 'Person',
                 'name'  => get_the_author_meta( 'display_name', (int) $post->post_author ),
             );
-            $webpage['publisher']       = array( '@id' => $home . '#organization' );
+            $webpage['publisher']        = array( '@id' => $home . '#organization' );
             $webpage['mainEntityOfPage'] = array( '@id' => $current_url . '#webpage' );
         }
     }
@@ -301,19 +337,19 @@ function quantia_jsonld(): void {
 
     if ( is_front_page() ) {
         $graphs[] = array(
-            '@type'          => 'FinancialService',
-            '@id'            => $home . '#financialservice',
-            'name'           => 'Quantia Hub',
-            'url'            => $home,
-            'description'    => get_bloginfo( 'description' ),
-            'provider'       => array( '@id' => $home . '#organization' ),
-            'areaServed'     => array(
+            '@type'              => 'FinancialService',
+            '@id'                => $home . '#financialservice',
+            'name'               => 'Quantia Hub',
+            'url'                => $home,
+            'description'        => get_bloginfo( 'description' ),
+            'provider'           => array( '@id' => $home . '#organization' ),
+            'areaServed'         => array(
                 '@type' => 'Country',
                 'name'  => 'Panama',
             ),
-            'serviceType'    => array( 'Inversiones', 'Alcancías', 'Retiro', 'Tarjetas' ),
+            'serviceType'        => array( 'Inversiones', 'Alcancías', 'Retiro', 'Tarjetas' ),
             'currenciesAccepted' => 'USD',
-            'knowsAbout'     => array(
+            'knowsAbout'         => array(
                 'Inversiones financieras',
                 'Fondos de inversión',
                 'Ahorro programado',
@@ -332,7 +368,7 @@ function quantia_jsonld(): void {
     echo "\n" . '</script>' . "\n";
 }
 
-add_filter( 'document_title_parts', function( array $title ): array {
+add_filter( 'document_title_parts', function ( array $title ): array {
     if ( is_front_page() || is_home() ) {
         return array( 'title' => 'Quantia Hub' );
     }
@@ -342,6 +378,6 @@ add_filter( 'document_title_parts', function( array $title ): array {
     return $title;
 } );
 
-add_filter( 'document_title_separator', function(): string {
+add_filter( 'document_title_separator', function (): string {
     return '|';
 } );
