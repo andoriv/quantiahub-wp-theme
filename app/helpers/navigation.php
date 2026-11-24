@@ -8,13 +8,14 @@
 defined( 'ABSPATH' ) || exit;
 
 function quantia_primary_menu_fallback(): void {
-    $items = array(
+    $items = apply_filters( 'quantia_primary_menu_fallback_items', array(
         array( 'label' => __( 'Inicio', 'quantia-hub' ),   'url' => home_url( '/' ) ),
         array( 'label' => __( 'Tarifas', 'quantia-hub' ),  'url' => home_url( '/tarifas/' ) ),
         array( 'label' => __( 'Aprende', 'quantia-hub' ),  'url' => home_url( '/aprende/' ) ),
         array( 'label' => __( 'Soporte', 'quantia-hub' ),  'url' => home_url( '/soporte/' ) ),
         array( 'label' => __( 'Nosotros', 'quantia-hub' ), 'url' => home_url( '/nosotros/' ) ),
-    );
+    ) );
+
     echo '<ul class="flex items-center gap-0.5">';
     foreach ( $items as $item ) {
         printf(
@@ -75,5 +76,5 @@ function quantia_get_product_nav(): array {
         );
     }
 
-    return $items;
+    return apply_filters( 'quantia_product_nav_items', $items );
 }
